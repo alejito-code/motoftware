@@ -1,0 +1,106 @@
+body {
+  font-family: Arial, sans-serif;
+  height: 70vh;
+  font-family: Arial, sans-serif;
+  background: url(cdiagnostico/img/logoBlanco.png);
+  background-size: cover;
+  background-position: center;
+}
+
+h1 {
+  text-align: center;
+  color: #5a5c69;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Color blanco con opacidad del 50% */
+  backdrop-filter: blur(10px); /* Efecto de borrosidad */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.atras {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  display: block;
+  width: 55px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  border-radius: 5px;
+  margin: 0;
+  padding: 10px 30px;
+  background-color: #8e2317;
+  color: #f7f9f9;
+  text-decoration: none;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #8e2317;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #8e2317;
+}
+
+.swal2-confirm {
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.swal2-confirm {
+  max-width: 200px; /* Ancho máximo para el botón */
+  margin: 0 auto; /* Centrar horizontalmente */
+  background-color: #8e2317; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  font-size: 16px; /* Tamaño del texto */
+  border-radius: 5px; /* Borde redondeado */
+  padding: 10px 20px; /* Espaciado interno */
+}
+
+.swal2-confirm:hover {
+  background-color: #8e2317; /* Cambio de color al pasar el ratón */
+}

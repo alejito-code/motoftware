@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/icon"
+      href="../../../../../img/tuerca (1).png"
+    />
+    <title>Resultado</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="../static/estilos.css" />
+  </head>
+  <body>
+    <div class="fondo-answers">
+      <h1 class="result-title">
+        Gracias por completar el anterior formulario. Este ayudará tanto al
+        mecánico como a ti a conocer el estado de tu moto.
+      </h1>
+    </div>
+    <div class="answers" id="answers-container"></div>
+    <div>
+      <button class="volver-btn" id="volver-btn">
+        Volver a interfaz de citas
+      </button>
+      <button class="agendar-btn" id="agendar-btn">
+        Agendar cita de diagnostico
+      </button>
+      <button class="download-btn" id="download-btn">Descargar como PDF</button>
+    </div>
+
+    <script src="../app.js"></script>
+    <script>
+      // Obtener las respuestas de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const respuestas = Object.fromEntries(urlParams.entries());
+      const btn1 = document.getElementById("volver-btn");
+      const bt2 = document.getElementById("agendar-btn");
+
+      const answersContainer = document.getElementById("answers-container");
+      for (const [question, answer] of Object.entries(respuestas)) {
+        const p = document.createElement("p");
+        p.textContent = `${question}: ${answer}`;
+        answersContainer.appendChild(p);
+      }
+
+      document.getElementById("download-btn").addEventListener("click", () => {
+        const element = document.getElementById("answers-container");
+        html2pdf().from(element).save();
+      });
+
+      btn1.addEventListener("click", () => {
+        window.location.href = "../../../selec_cita.php";
+      });
+
+      bt2.addEventListener("click", () => {
+        window.location.href = "../../../agendamiento/diagnostico.php";
+      });
+    </script>
+    <style>
+      p {
+        margin-left: 15px;
+        margin-right: 10px;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+      }
+    </style>
+  </body>
+  <script src=https://kit.fontawesome.com/86860db679.js crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,158 @@
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url(pictures/logo.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.contenedor {
+  position: relative;
+  height: 50%;
+  width: 80%;
+  background: transparent;
+  border: 2px solid #8e2317;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centra verticalmente los elementos */
+}
+
+.contendor_1 {
+  width: 45%;
+}
+
+.atras {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  display: block;
+  width: 125px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  border-radius: 5px;
+  margin: 0;
+  padding: 10px 30px;
+  background-color: #8e2317;
+  color: #f7f9f9;
+  text-decoration: none;
+}
+
+.contendor_2 {
+  width: 45%;
+  margin-right: 20px;
+}
+
+.cambio {
+  margin-top: 0.1px;
+  color: #fff;
+  font-size: 2em;
+  margin-left: 20px;
+  display: block;
+}
+
+.titulo_enlace {
+  margin-top: 0.1px;
+  color: #fff;
+  font-size: 1.5em;
+  margin-left: 20px;
+  display: block;
+}
+
+.correo {
+  margin-top: 20px;
+  color: #8e2317;
+  display: block;
+}
+
+.email {
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  border: 1px solid #8e2317;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  width: 100%;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #8e2317;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-left: 10px; /* Espacio entre el input y el botón */
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 350px;
+  width: 400px;
+  background: transparent;
+  border: 2px solid #8e2317;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  justify-content: center; /* Centra verticalmente los elementos */
+}
+
+.contendor_3 {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.contendor_4 {
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.boton {
+  width: 80%;
+  margin-top: 70px;
+  padding: 10px;
+  background-color: #8e2317;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease; /* Transición suave al pasar el cursor */
+}
+
+.boton:hover {
+  background-color: #6c1913; /* Cambio de color al pasar el cursor */
+}
+
+.new_password {
+  font-size: 1.2em;
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px; /* Elimina el espacio debajo del input */
+}
+
+.new {
+  margin-top: 10px; /* Espacio encima del botón */
+}

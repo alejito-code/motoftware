@@ -1,0 +1,43 @@
+.container {
+  width: auto;
+  height: auto;
+  display: flex;
+  padding: 0%;
+  justify-content: center;
+}
+
+.btn1 {
+  margin: 10px;
+  padding: 10px;
+  width: 580px;
+  height: 125px;
+}
+
+.butto1 {
+  width: 70%;
+  height: 70%;
+  justify-content: center;
+  display: block;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: gray;
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  outline: none;
+}
+
+a {
+  display: left;
+  text-decoration: none;
+  color: #fff;
+}
+
+#icons {
+  padding: 8px;
+  margin-left: 25px;
+  margin-top: 5px;
+  display: left;
+}
