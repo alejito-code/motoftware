@@ -39,7 +39,7 @@
 
         <section class="perfil-usuario">
             <div class="contenedor-perfil">
-                <div class="portada-perfil" style="background-image: url('../img/logo copy.png');">
+                <div class="portada-perfil" style="background-image: url('../img/logoBlanco.png');">
                     <div class="sombra"></div>
                     <div class="avatar-perfil">
                         <img src="../img/undraw_profile.svg" alt="img">
