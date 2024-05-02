@@ -81,6 +81,8 @@ if ($varsesion == null || $varsesion = '') {
                         INNER JOIN mecanico me ON c.id_mec = me.id");
                         while ($fila = mysqli_fetch_assoc($result)) :
 
+
+                            // asdfasfdas
                         ?>
                             <tr>
                                 <td><?php echo $fila['id_cita']; ?></td>
