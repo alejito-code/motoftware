@@ -100,13 +100,8 @@
 </head>
 </head>
 <body>
-<<<<<<< HEAD
-<a href="../selec_cita.php" class="atras"><i class="fas fa-chevron-left"></i>  Atras</a>
-    <h1>¡Agenda tu cita aquí!</h1>
-=======
 <a href="../selec_cita.php" class="atras">Atras</a>
     <h1>¡Agenda tu cita por falla electrica aquí!</h1>
->>>>>>> 136cf2aab99f6afbbbb7fe6ebb107a5fd059f5e1
     <div class="container">
         <h2>Formulario para Falla electrica</h2>
         <form id="cita-form" action="../../includes/functions.php" method="POST">
