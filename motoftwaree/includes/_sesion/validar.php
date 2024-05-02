@@ -12,7 +12,7 @@
 		$nombre = $_POST['nombre'];
 		$correo = $_POST['correo'];
 		$telefono = $_POST['telefono'];
-		$password = $_POST['password'];
+		$password = sha1($_POST['password']);
 		$rol= $_POST['rol'];
 
 

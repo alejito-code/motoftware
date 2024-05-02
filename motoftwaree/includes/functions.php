@@ -79,6 +79,8 @@ function acceso_user()
     // Consulta SQL para obtener el rol del usuario basado en el nombre de usuario
     $consulta = "SELECT rol FROM `user` WHERE nombre = '$nombre'";
 
+    $pass=sha1($password);
+
     $resultado = mysqli_query($conexion, $consulta);
 
     // Verificar si se obtuvo un resultado
@@ -111,7 +113,7 @@ function acceso_user()
         $_SESSION['id'] = $id_usuario;
     }
 
-    $consulta = "SELECT*FROM user where nombre='$nombre' and password='$password'";
+    $consulta = "SELECT*FROM user where nombre='$nombre' and password='$pass'";
     $resultado = mysqli_query($conexion, $consulta);
     $filas = mysqli_fetch_array($resultado);
 
@@ -190,17 +192,17 @@ function insert_horario()
     include "db.php";
     extract($_POST);
 
-    $consulta = "INSERT INTO horario (hora) VALUES ('$hora')";
+    $consulta = "INSERT INTO horario (dias, id_doctor) VALUES ('$dias', '$id_doctor')";
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
         echo "<script language='JavaScript'>
-        alert('Horario agregado exitosamente');
+        alert('El registro fue actualizado correctamente');
         location.assign('../views/horarios.php');
         </script>";
     } else {
         echo "<script language='JavaScript'>
-         alert('Uy no! algo ha salido mal');
+         alert('Uy no! ya valio hablale al ing :v');
          location.assign('../views/horarios.php');
          </script>";
     }
@@ -256,7 +258,6 @@ function insert_cita($start)
     $consulta = "INSERT INTO citas (id_user, id_moto, id_mec, id_serv, fecha, observacion) 
     VALUES ('$id_us', '$placa', '$mecanico', '$falla', '$fecha', '$observacion')";
 
-    echo $consulta;
     // Ejecutar la consulta SQL
     $resultado = mysqli_query($conexion, $consulta);
 
@@ -268,7 +269,7 @@ function insert_cita($start)
     } else {
         echo "<script language='JavaScript'>
          alert('Uy no! ha sucedido un error, intenta de nuevo');
-         location.assign('../includes/functions.php');
+         location.assign('../views/selec_cita.php');
          </script>";
     }
 }
