@@ -18,7 +18,7 @@ if (isset($_POST['accion'])) {
             break;
 
         case 'insert_cita':
-            insert_cita();
+            insert_cita($start);
             break;
 
         case 'insert_esp':
@@ -228,7 +228,7 @@ function insert_paciente()
     }
 }
 
-function insert_cita()
+function insert_cita($start)
 {
     include "db.php";
 
@@ -239,23 +239,22 @@ function insert_cita()
         $falla = $_POST['fallaelectrica'];
     } elseif ($_POST['fallamecanica'] != 0) {
         $falla = $_POST['fallamecanica'];
-    } elseif ($_POST['mantenimiento'] != 0) {
-        $falla = $_POST['mantenimiento'];
+    } elseif ($_POST['fallamantenimiento'] != 0) {
+        $falla = $_POST['fallamantenimiento'];
     } else {
         $falla = "No seleccionada";
     }
-
+    $start = $start;
     echo "Valor de 'id': " . $_POST['id_us'];
     echo "Valor de 'placa': " . $_POST['placa'];
     echo "Valor de 'mec': " . $_POST['mecanico'];
     echo "Valor de 'falla': " . $falla;
-    echo "Valor de 'hora': " . $_POST['hora'];
     echo "Valor de 'fecha': " . $_POST['fecha'];
     echo "Valor de 'obser': " . $_POST['observacion'];
 
     // Construir la consulta SQL
-    $consulta = "INSERT INTO citas (id_user, id_moto, id_mec, id_serv, id_hora, fecha, observacion) 
-    VALUES ('$id_us', '$placa', '$mecanico', '$falla', '$hora', '$fecha', '$observacion')";
+    $consulta = "INSERT INTO citas (id_user, id_moto, id_mec, id_serv, fecha, observacion) 
+    VALUES ('$id_us', '$placa', '$mecanico', '$falla', '$fecha', '$observacion')";
 
     echo $consulta;
     // Ejecutar la consulta SQL

@@ -18,15 +18,93 @@
     <title>Falla electrica</title>
     <link rel="shortcut icon" type="image/icon" href="../../../img/tuerca (1).png">
     <link href="../estilos.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.5/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.5/sweetalert2.min.css">
+    <script src='../../js/jquery.min.js'></script>
+    <script src='./fullcalendar/dist/index.global.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var today = new Date(); // obtener la fecha actual
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            initialDate: '2023-01-12',
+            navLinks: true, // can click day/week names to navigate views
+            selectable: true,
+            selectMirror: true,
+            validRange: { // agregar esta opción
+                start: today // solo permitir selección a partir de la fecha actual
+            },
+            selectConstraint: { // agregar esta opción
+                startTime: '08:00', // hora de inicio válida
+                endTime: '21:00' // hora de fin válida
+            },
+            slotMinTime: '08:00', // hora de inicio mínima
+            slotMaxTime: '21:00', // hora de fin máxima
+            selectAllow: function(arg) { // agregar esta función
+                var day = arg.start.getDay(); // obtener el día de la semana (0 = domingo, 1 = lunes, ...)
+                return day >= 1 && day <= 6; // permitir selección solo si el día es entre lunes y sábado
+            },
+            select: function(arg) {
+                var title = prompt('Event Title:');
+                if (title != 0) {
+                    var start = arg.start; // fecha y hora de inicio
+                    var end = arg.end; // fecha y hora de fin
+                    var allDay = arg.allDay; // true si es un evento de todo el día, false en caso contrario
+
+                    // asignar los valores de start y end a campos ocultos en el formulario
+                    document.getElementById('start').value = moment(start).format('YYYY-MM-DDTHH:mm:ss');
+
+                    calendar.addEvent({
+                    title: title,
+                    start: arg.start,
+                    end: arg.end
+                    });
+                }
+                calendar.unselect();
+            },
+            eventClick: function(arg) {
+                if (confirm('Are you sure you want to delete this event?')) {
+                arg.event.remove()
+                }
+            },
+            editable: true,
+            dayMaxEvents: true, // allow "more" link when too many events
+            events: [
+                // tus eventos aquí
+            ]
+            });
+
+            calendar.render();
+        });
+
+    </script>
+    <style>
+
+    #calendar {
+        max-width: 500px;
+        height: 380px;
+        margin: 0 auto;
+        padding: 5px;
+        background-color: white;
+        border-radius: 5px;
+    }
+
+    </style>
+</head>
 </head>
 <body>
 <a href="../selec_cita.php" class="atras"><i class="fas fa-chevron-left"></i>  Atras</a>
-    <h1>¡Agenda tu cita por falla electrica aquí!</h1>
+    <h1>¡Agenda tu cita aquí!</h1>
     <div class="container">
         <h2>Formulario para Falla electrica</h2>
-        <form id="formulario" action="../../includes/functions.php" method="POST">
+        <form id="cita-form" action="../../includes/functions.php" method="POST">
             <div class="form-group">
               <label>Selecione la placa del vehiculo</label>
                 <select class="form-control" id="placa" name="placa">
@@ -138,27 +216,9 @@
               </div>    
           <div class="form-group">
             <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" required>
+            <div id='calendar'></div>
+            <input type="hidden" id="start" name="start">
           </div>
-          <div class="form-group">
-            <label for="hora" class="form-label">Hora:</label>
-            <select class="form-control" id="hora" name="hora">
-                  <option value="0">--Selecciona una hora--</option>
-                    <?php
-
-                      include("../../includes/db.php");
-                      //Codigo para mostrar categorias desde otra tabla
-                      $sql = "SELECT c.id_hora, h.id AS ih, h.hora AS hora FROM horario h
-                      LEFT JOIN citas c ON h.id = c.id_hora
-                      WHERE c.id_hora IS NULL";
-                      $resultado = mysqli_query($conexion, $sql);
-                      while ($consulta = mysqli_fetch_array($resultado)) {
-                          echo '<option value="' . $consulta['ih'] . '">' . $consulta['hora'] . '</option>';
-                        }
-
-                    ?>
-                </select>
-        </div>
           <div class="form-group">
             <label for="observacion">Observación:</label>
             <textarea id="observacion" name="observacion" rows="4" required></textarea>
@@ -168,6 +228,40 @@
           <button type="submit" value="Guardar">Enviar</button>
         </form>
       </div>
+        <script>
+            document.getElementById('cita-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // obtener los valores de los campos del formulario
+                var id_us = document.getElementById('id_us').value;
+                var placa = document.getElementById('placa').value;
+                var falla = document.getElementById('falla').value;
+                var mecanico = document.getElementById('mecanico').value;
+                var fecha = document.getElementById('start') ? document.getElementById('start').value : ''; // obtener el valor del campo oculto
+                var observacion = document.getElementById('observacion').value;
+
+                // enviar los datos al servidor
+                $.ajax({
+                    url: '../../includes/functions.php', // URL del script PHP que recibe los datos
+                    type: 'POST',
+                    data: {
+                        accion: 'insert_cita',
+                        id_us: id_us,   
+                        placa: placa,
+                        falla: falla,
+                        mecanico: mecanico,
+                        fecha: fecha,
+                        observacion: observacion
+                    },
+                    success: function(response) {
+                        // manejar la respuesta del servidor
+                        console.log(response);
+                        alert('Cita agendada exitosamente');
+                        location.assign('../selec_cita.php');
+                    }
+                });
+            });
+        </script>
       <!-- <script>
             document.getElementById('formulario').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -207,5 +301,4 @@
     </script> -->
 </body>
 <script src=https://kit.fontawesome.com/86860db679.js crossorigin="anonymous"></script>
-
 </html>
