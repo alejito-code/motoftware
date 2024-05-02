@@ -10,8 +10,7 @@
   <link rel="shortcut icon" type="image/icon" href="../../../img/tuerca (1).png"/>
 
 </head>
-<a href="./index.html" class="atras"
-      ><i class="fas fa-chevron-left"></i> Atras</a>
+<a href="./index.html" class="atras">Atras</a>
 
 <body class="text-center">
   <main class="contenedor">

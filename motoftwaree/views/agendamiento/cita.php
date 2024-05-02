@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.5/sweetalert2.min.css">
 </head>
 <body>
-<a href="../selec_cita.php" class="atras"><i class="fas fa-chevron-left"></i>  Atras</a>
+<a href="../selec_cita.php" class="atras">Atras</a>
     <h1>¡Agenda tu cita por falla electrica aquí!</h1>
     <div class="container">
         <h2>Formulario para Falla electrica</h2>

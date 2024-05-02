@@ -1,7 +1,9 @@
 <?php 
 require_once('../db.php');
 $id = $_POST['id'];
-$pass = $_POST['new_password'];
+$password = $_POST['new_password'];
+
+$pass = sha1($password);
 
 $query = "UPDATE user set password= '$pass' WHERE id= $id";
 $conexion->query($query);
