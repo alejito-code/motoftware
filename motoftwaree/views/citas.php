@@ -59,7 +59,7 @@ if ($varsesion == null || $varsesion = '') {
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th># Cita</th>
+                                <th>Cita</th>
                                 <th>Fecha_Cita</th>
                                 <th>Nombre</th>
                                 <th>Placa</th>
