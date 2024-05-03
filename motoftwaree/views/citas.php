@@ -179,27 +179,25 @@ if ($varsesion == null || $varsesion = '') {
                         <tr>
                             <th id="atributos" style="width: 80px;">Nombre</th>
                             <th id="atributos" style="width: 80px;"># Cita</th>
-                            <th id="atributos" style="width: 120px;">Fecha_Cita</th>
-                            <th id="atributos" style="width: 80px;">Horario</th>
+                            <th id="atributos" style="width: 200px;">Fecha_Cita</th>
                             <th id="atributos" style="width: 120px;">Placa</th>
                         </tr>
                     </thead>
                     <tbody class="lista">
-                        <?php
-                        include "../includes/db.php";
-                       $result = mysqli_query($conexion, "SELECT c.id_cita, c.fecha, u.id AS idu, u.nombre AS nomu, m.placa, 
-                        me.nombres, s.nombre AS serv, c.observacion FROM citas c 
-                        INNER JOIN user u ON c.id_user = u.id 
-                        INNER JOIN moto m ON c.id_moto = m.id
-                        INNER JOIN servicio s ON c.id_serv = s.id
-                        INNER JOIN mecanico me ON c.id_mec = me.id");
-                        while ($fila = mysqli_fetch_assoc($result)) :
-                        ?>
+                    <?php
+                    include "../includes/db.php";
+                    $result = mysqli_query($conexion, "SELECT c.id_cita, c.fecha, u.nombre AS nomu, m.placa, 
+                    me.nombres, s.nombre AS serv, c.observacion FROM citas c 
+                    INNER JOIN user u ON c.id_user = u.id 
+                    INNER JOIN moto m ON c.id_moto = m.id
+                    INNER JOIN servicio s ON c.id_serv = s.id
+                    INNER JOIN mecanico me ON c.id_mec = me.id WHERE u.id = $id_us");
+                    while ($fila = mysqli_fetch_assoc($result)) :
+                    ?>
                         <tr>
                             <td id="return" style="width: 80px;"><?php echo $fila['nomu']; ?></td>
                             <td id="return" style="width: 80px;"><?php echo $fila['id_cita']; ?></td>
-                            <td id="return" style="width: 120px;"><?php echo $fila['fecha']; ?></td>
-                            <td id="return" style="width: 80px;"><?php echo $fila['hora']; ?></td>
+                            <td id="return" style="width: 200px;"><?php echo $fila['fecha']; ?></td>
                             <td id="return" style="width: 120px;"><?php echo $fila['placa']; ?></td>
                         </tr>
                         <?php endwhile; ?>
