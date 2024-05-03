@@ -187,10 +187,12 @@ if ($varsesion == null || $varsesion = '') {
                     <tbody class="lista">
                         <?php
                         include "../includes/db.php";
-                        $result = mysqli_query($conexion, "SELECT c.id_cita, c.fecha, c.hora, u.nombre AS nomu, m.placa FROM citas c
-                        INNER JOIN user u ON c.id_user = u.id
+                       $result = mysqli_query($conexion, "SELECT c.id_cita, c.fecha, u.id AS idu, u.nombre AS nomu, m.placa, 
+                        me.nombres, s.nombre AS serv, c.observacion FROM citas c 
+                        INNER JOIN user u ON c.id_user = u.id 
                         INNER JOIN moto m ON c.id_moto = m.id
-                        WHERE u.id = $id_us");
+                        INNER JOIN servicio s ON c.id_serv = s.id
+                        INNER JOIN mecanico me ON c.id_mec = me.id");
                         while ($fila = mysqli_fetch_assoc($result)) :
                         ?>
                         <tr>
