@@ -49,6 +49,12 @@ if ($varsesion == null || $varsesion = '') {
                 <button type="button" class="btn btn-success">
                 <a href="./reportes/ex_mec.php"> Excel <i class="fas fa-table"></i> </a></button>
 
+                <style>
+                a:hover{
+                    color: white;
+                }
+               </style> 
+
 
             </div>
 

@@ -93,6 +93,11 @@ include '../includes/header.php';
             </div>
         </div>
     </div>
+    <style>
+        #text-primary {
+         color: #8E2317;
+        }
+    </style>
     <?php
         };
     ?> 
@@ -230,6 +235,12 @@ include '../includes/header.php';
                 </div>
             </button>
         </div>
+
+        <style>
+                a:hover{
+                    color: white;
+                }
+        </style> 
         <style>
             #agendar{
                 justify-content: center;

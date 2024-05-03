@@ -53,6 +53,13 @@ if ($varsesion == null || $varsesion = '') {
                 <button type="button" class="btn btn-success">
                 <a href="./reportes/ex_cita.php"> Excel <i class="fas fa-table"></i> </a></button>
 
+                <style>
+                a:hover{
+                    color: white;
+                }
+               </style> 
+
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -216,7 +223,7 @@ if ($varsesion == null || $varsesion = '') {
                     margin-top: -40px;
                     border-radius: 10px;
                     background-color: #6b6d7d !important;
-                    border-color: #656776 !important;
+                    border: none;
                 }
                 #constancias:hover {
                     background-color: #656776;

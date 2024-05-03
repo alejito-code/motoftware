@@ -50,6 +50,12 @@ if ($varsesion == null || $varsesion = '') {
                         <a href="./reportes/ex_moto.php"> Excel <i class="fas fa-table"></i> </a></button>
                 </div>
 
+                <style>
+                a:hover{
+                    color: white;
+                }
+               </style> 
+               
                 <!-- Table users -->
 
                 <div class="card-body">

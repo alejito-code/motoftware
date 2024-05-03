@@ -34,6 +34,12 @@ if ($varsesion == null || $varsesion = '') {
             </main>
         </div>
 
+        <style>
+                a:hover{
+                    color: white;
+                }
+               </style> 
+
         <?php include "../includes/footer.php"; ?>
 
 
