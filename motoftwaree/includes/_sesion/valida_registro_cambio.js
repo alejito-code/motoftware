@@ -5,15 +5,15 @@ with(document.registro){
         if(ok && nueva.value!= confirme.value){
             Swal.fire({
                 icon: "error",
-                title: "Nooo",
-                text: "Revisa!"
+                title: "Algo salio mal",
+                text: "Revisa las contraseñas"
               });
               return false;
         }if(ok && nueva.value==""){
             Swal.fire({
                 icon: "error",
-                title: "Nooo.",
-                text: "Revisa!"
+                title: "Algo salio mal",
+                text: "Te falto confirmar las contraseñas"
               });
               return false;
         }
@@ -21,8 +21,8 @@ with(document.registro){
         else{
             Swal.fire({
                 icon: "success",
-                title: "melo",
-                text: "Si te cambio",
+                title: "Cambio exitoso",
+                text: "Cambio de contraseña correctamente",
               }).then((result) => {
                 if (result.value) {
                     window.location.href = "index.html"
