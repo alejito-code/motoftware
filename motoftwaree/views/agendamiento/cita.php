@@ -54,7 +54,7 @@
             select: function(arg) {
                 var title = prompt('Event Title:');
                 if (title != 0) {
-                    var start = arg.start; // fecha y hora de inicio
+                    var start = arg.start.toISOString();; // fecha y hora de inicio
                     var end = arg.end; // fecha y hora de fin
                     var allDay = arg.allDay; // true si es un evento de todo el día, false en caso contrario
 
@@ -137,7 +137,7 @@
             <!-- Campos "Tipo de Falla" -->
             <div class="form-group" id="campoFalla1" style="display: none;">
                 <label for="falla1">Tipo de Falla Eléctrica:</label>
-                <select class="form-control" id="falla" name="fallaelectrica">
+                <select class="form-control" id="falla1" name="fallaelectrica">
                     <option value="0">--Selecciona una opción--</option>
                     <?php
                     include("../../includes/db.php");
@@ -151,7 +151,7 @@
             </div>
             <div class="form-group" id="campoFalla2" style="display: none;">
                 <label for="falla2">Tipo de Falla Mecánica:</label>
-                <select class="form-control" id="falla" name="fallamecanica">
+                <select class="form-control" id="falla2" name="fallamecanica">
                     <option value="0">--Selecciona una opción--</option>
                     <?php
                     include("../../includes/db.php");
@@ -165,7 +165,7 @@
             </div>
             <div class="form-group" id="campoFalla3" style="display: none;">
                 <label for="falla2">Tipo Mantenimiento:</label>
-                <select class="form-control" id="falla" name="mantenimiento">
+                <select class="form-control" id="falla3" name="mantenimiento">
                     <option value="0">--Selecciona una opción--</option>
                     <?php
                     include("../../includes/db.php");
@@ -235,11 +235,21 @@
                 // obtener los valores de los campos del formulario
                 var id_us = document.getElementById('id_us').value;
                 var placa = document.getElementById('placa').value;
-                var falla = document.getElementById('falla').value;
                 var mecanico = document.getElementById('mecanico').value;
-                var fecha = document.getElementById('start') ? document.getElementById('start').value : ''; // obtener el valor del campo oculto
+                var fecha = document.getElementById('start').value;
                 var observacion = document.getElementById('observacion').value;
 
+                var falla = '';
+
+                // verificar cuál de los campos de verificación está marcado
+                if (document.getElementById('mostrarFalla1').checked) {
+                    falla = document.querySelector('select[name="fallaelectrica"]').value;
+                } else if (document.getElementById('mostrarFalla2').checked) {
+                    falla = document.querySelector('select[name="fallamecanica"]').value;
+                } else if (document.getElementById('mostrarFalla3').checked) {
+                    falla = document.querySelector('select[name="mantenimiento"]').value;
+                }
+                
                 // enviar los datos al servidor
                 $.ajax({
                     url: '../../includes/functions.php', // URL del script PHP que recibe los datos
@@ -250,7 +260,7 @@
                         placa: placa,
                         falla: falla,
                         mecanico: mecanico,
-                        fecha: fecha,
+                        fecha: fecha, // convertir la fecha a formato ISO
                         observacion: observacion
                     },
                     success: function(response) {

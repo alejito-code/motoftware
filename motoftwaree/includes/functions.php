@@ -232,20 +232,19 @@ function insert_paciente()
 
 function insert_cita($start)
 {
+    var_dump($_POST);
     include "db.php";
-
+   
     // Recoger datos del formulario
     extract($_POST);
 
-    if ($_POST['fallaelectrica'] != 0) {
-        $falla = $_POST['fallaelectrica'];
-    } elseif ($_POST['fallamecanica'] != 0) {
-        $falla = $_POST['fallamecanica'];
-    } elseif ($_POST['fallamantenimiento'] != 0) {
-        $falla = $_POST['fallamantenimiento'];
-    } else {
-        $falla = "No seleccionada";
-    }
+    $placa = $_POST['placa'];
+    $mecanico = $_POST['mecanico'];
+    $fecha = $_POST['fecha']; // valor de la fecha y hora seleccionada en formato ISO 8601
+    $observacion = $_POST['observacion'];
+
+    // Obtener el tipo de falla seleccionado
+
     $start = $start;
     echo "Valor de 'id': " . $_POST['id_us'];
     echo "Valor de 'placa': " . $_POST['placa'];

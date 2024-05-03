@@ -53,7 +53,6 @@ if ($actualsesion == null || $actualsesion == '') {
                             <tr>
                                 <th>Nombre</th>
                                 <th>Correo</th>
-                                <th>Contraseña</th>
                                 <th>Fecha</th>
                                 <th>Rol</th>
                                 <th>Acciones</th>
@@ -63,7 +62,7 @@ if ($actualsesion == null || $actualsesion == '') {
                         <?php
 
                         include "../includes/db.php";
-                        $result = mysqli_query($conexion, "SELECT  user.id, user.nombre, user.correo, user.password, user.fecha,
+                        $result = mysqli_query($conexion, "SELECT  user.id, user.nombre, user.correo, user.fecha,
                         roles.rol FROM user LEFT JOIN roles ON user.rol= roles.id ");
                         while ($fila = mysqli_fetch_assoc($result)) :
 
@@ -71,7 +70,6 @@ if ($actualsesion == null || $actualsesion == '') {
                             <tr>
                                 <td><?php echo $fila['nombre']; ?></td>
                                 <td><?php echo $fila['correo']; ?></td>
-                                <td><?php echo $fila['password']; ?></td>
                                 <td><?php echo $fila['fecha']; ?></td>
                                 <td><?php echo $fila['rol']; ?></td>
 

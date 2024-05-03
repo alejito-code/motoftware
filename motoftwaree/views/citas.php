@@ -317,7 +317,6 @@ if ($varsesion == null || $varsesion = '') {
                             <tr>
                                 <th># Cita</th>
                                 <th>Fecha_Cita</th>
-                                <th>Horario</th>
                                 <th>Nombre</th>
                                 <th>Placa</th>
                                 <th>Mecanico</th>
@@ -330,7 +329,7 @@ if ($varsesion == null || $varsesion = '') {
                         <?php
 
                         include "../includes/db.php";
-                        $result = mysqli_query($conexion, "SELECT c.id_cita, c.fecha, c.hora, u.nombre AS nomu, m.placa, 
+                        $result = mysqli_query($conexion, "SELECT c.id_cita, c.fecha, u.nombre AS nomu, m.placa, 
                         me.nombres, s.nombre AS serv, c.observacion FROM citas c 
                         INNER JOIN user u ON c.id_user = u.id 
                         INNER JOIN moto m ON c.id_moto = m.id
@@ -342,7 +341,6 @@ if ($varsesion == null || $varsesion = '') {
                             <tr>
                                 <td><?php echo $fila['id_cita']; ?></td>
                                 <td><?php echo $fila['fecha']; ?></td>
-                                <td><?php echo $fila['hora']; ?></td>
                                 <td><?php echo $fila['nomu']; ?></td>
                                 <td><?php echo $fila['placa']; ?></td>    
                                 <td><?php echo $fila['nombres']; ?></td>
