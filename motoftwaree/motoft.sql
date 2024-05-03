@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2024 a las 21:47:22
+-- Tiempo de generación: 03-05-2024 a las 04:54:05
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -35,8 +35,7 @@ CREATE TABLE `citas` (
   `id_serv` int(11) DEFAULT NULL,
   `id_mec` int(11) DEFAULT NULL,
   `mecanico` varchar(80) NOT NULL,
-  `id_hora` int(11) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
   `observacion` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -44,8 +43,16 @@ CREATE TABLE `citas` (
 -- Volcado de datos para la tabla `citas`
 --
 
-INSERT INTO `citas` (`id_cita`, `id_user`, `id_moto`, `id_serv`, `id_mec`, `mecanico`, `id_hora`, `fecha`, `observacion`) VALUES
-(104, 3, 5, 1, 11, '', 13, '2024-05-21', 'pandevono');
+INSERT INTO `citas` (`id_cita`, `id_user`, `id_moto`, `id_serv`, `id_mec`, `mecanico`, `fecha`, `observacion`) VALUES
+(2, 11, 9, NULL, 12, '', '2024-05-08 00:00:00', 'dsa'),
+(3, 11, 9, NULL, 11, '', '2024-05-08 08:00:00', 'hgggg'),
+(4, 11, 9, 3, 11, '', '0000-00-00 00:00:00', 'dsda'),
+(5, 11, 9, 6, 12, '', '0000-00-00 00:00:00', 'sasas'),
+(19, 11, 9, 1, 10, '', '2024-05-03 09:00:00', 'sa'),
+(20, 11, 9, 9, 10, '', '2024-05-10 09:00:00', 'wdawdsa'),
+(24, 11, 9, 10, 12, '', '2024-05-15 09:00:00', 'asadaw'),
+(25, 11, 9, 6, 11, '', '2024-05-03 08:00:00', 'dwee'),
+(26, 11, 9, 7, 12, '', '2024-05-03 08:30:00', 'gvhubu');
 
 -- --------------------------------------------------------
 
@@ -166,11 +173,10 @@ CREATE TABLE `moto` (
 --
 
 INSERT INTO `moto` (`id`, `placa`, `marca`, `modelo`, `cilindraje`, `tipo`, `id_user`) VALUES
-(3, 'GHY45D', 'YAMAHA', 2021, 150, 'SZRR', 3),
-(5, 'YNP10B', 'SUZUKI', 2005, 125, 'BEST', 3),
 (6, 'FAM14G', 'YAMAHA', 2024, 350, 'RAPTOR', 4),
 (7, 'FTH24F', 'YAMAHA', 2006, 300, 'NAVI', 9),
-(8, 'FJM13E', 'SUZUKI', 2022, 800, 'FJ', 5);
+(8, 'FJM13E', 'SUZUKI', 2022, 800, 'FJ', 5),
+(9, 'YNP10A', 'HONDA', 2006, 300, 'XRE', 11);
 
 -- --------------------------------------------------------
 
@@ -269,11 +275,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nombre`, `correo`, `telefono`, `password`, `foto`, `fecha`, `rol`) VALUES
-(3, 'Alejandro', 'alejandro.ytf@gmail.com', 3214567890, '123', '', '2024-04-04 01:18:00', 3),
 (4, 'juan', 'juan@mail.com', 31067432, '12345', '', '2024-04-12 02:51:58', 3),
 (5, 'Camilo', 'camilo@gml.com', 31067432, '8cb2237d0679ca88db6464eac60da96345513964', '', '2024-05-02 18:43:42', 3),
-(6, 'alejo', 'alejo@motoff.com', 32145446, '12345', '', '2024-05-02 18:47:44', 1),
-(9, 'admin', 'admin@motoft.com', 31067432, '8cb2237d0679ca88db6464eac60da96345513964', '', '2024-05-02 18:56:04', 1);
+(9, 'admin', 'admin@motoft.com', 31067432, '8cb2237d0679ca88db6464eac60da96345513964', '', '2024-05-02 18:56:04', 1),
+(10, 'estefa', 'estefa@gmail.com', 123466, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '', '2024-05-02 19:51:42', 3),
+(11, 'Alejandro', 'alejandro.ytf@gmail.com', 3105219333, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '', '2024-05-02 19:53:22', 3);
 
 --
 -- Índices para tablas volcadas
@@ -287,8 +293,7 @@ ALTER TABLE `citas`
   ADD KEY `id_user` (`id_user`),
   ADD KEY `id_moto` (`id_moto`),
   ADD KEY `id_serv` (`id_serv`),
-  ADD KEY `id_mec` (`id_mec`),
-  ADD KEY `id_hora` (`id_hora`);
+  ADD KEY `id_mec` (`id_mec`);
 
 --
 -- Indices de la tabla `diagnostico`
@@ -359,7 +364,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `diagnostico`
@@ -389,7 +394,7 @@ ALTER TABLE `mecanico`
 -- AUTO_INCREMENT de la tabla `moto`
 --
 ALTER TABLE `moto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `pacientes`
@@ -413,7 +418,7 @@ ALTER TABLE `servicio`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
@@ -426,8 +431,7 @@ ALTER TABLE `citas`
   ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`id_moto`) REFERENCES `moto` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `citas_ibfk_3` FOREIGN KEY (`id_serv`) REFERENCES `servicio` (`id`),
-  ADD CONSTRAINT `citas_ibfk_4` FOREIGN KEY (`id_mec`) REFERENCES `mecanico` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `citas_ibfk_5` FOREIGN KEY (`id_hora`) REFERENCES `horario` (`id`);
+  ADD CONSTRAINT `citas_ibfk_4` FOREIGN KEY (`id_mec`) REFERENCES `mecanico` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `moto`
