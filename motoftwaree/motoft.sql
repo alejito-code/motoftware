@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2024 a las 21:37:06
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Tiempo de generación: 03-05-2024 a las 04:54:05
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -34,22 +35,24 @@ CREATE TABLE `citas` (
   `id_serv` int(11) DEFAULT NULL,
   `id_mec` int(11) DEFAULT NULL,
   `mecanico` varchar(80) NOT NULL,
-  `id_hora` int(11) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
   `observacion` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `citas`
 --
 
-INSERT INTO `citas` (`id_cita`, `id_user`, `id_moto`, `id_serv`, `id_mec`, `mecanico`, `id_hora`, `fecha`, `observacion`) VALUES
-(74, 1, 4, 8, 11, '', 11, '2024-04-25', 'ddddddddd'),
-(84, 1, 1, 3, 10, '', 11, '2024-04-24', 'ddddddd'),
-(99, 1, 1, 7, 10, '', 11, '2024-04-30', 'asasasas'),
-(100, 1, 4, 6, 12, '', 10, '2024-04-30', 'ssssss'),
-(101, 1, 1, 11, 12, '', 10, '2024-04-29', 'hhhhhhhhh'),
-(104, 3, 5, 1, 11, '', 13, '2024-05-21', 'pandevono');
+INSERT INTO `citas` (`id_cita`, `id_user`, `id_moto`, `id_serv`, `id_mec`, `mecanico`, `fecha`, `observacion`) VALUES
+(2, 11, 9, NULL, 12, '', '2024-05-08 00:00:00', 'dsa'),
+(3, 11, 9, NULL, 11, '', '2024-05-08 08:00:00', 'hgggg'),
+(4, 11, 9, 3, 11, '', '0000-00-00 00:00:00', 'dsda'),
+(5, 11, 9, 6, 12, '', '0000-00-00 00:00:00', 'sasas'),
+(19, 11, 9, 1, 10, '', '2024-05-03 09:00:00', 'sa'),
+(20, 11, 9, 9, 10, '', '2024-05-10 09:00:00', 'wdawdsa'),
+(24, 11, 9, 10, 12, '', '2024-05-15 09:00:00', 'asadaw'),
+(25, 11, 9, 6, 11, '', '2024-05-03 08:00:00', 'dwee'),
+(26, 11, 9, 7, 12, '', '2024-05-03 08:30:00', 'gvhubu');
 
 -- --------------------------------------------------------
 
@@ -65,8 +68,8 @@ CREATE TABLE `diagnostico` (
   `id_servicio` int(11) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `hora` time DEFAULT NULL,
-  `archivo` longblob DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `archivo` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `diagnostico`
@@ -90,7 +93,7 @@ INSERT INTO `diagnostico` (`id`, `id_usuario`, `id_moto`, `id_mecanico`, `id_ser
 CREATE TABLE `estado` (
   `id` int(11) NOT NULL,
   `estado` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `estado`
@@ -109,8 +112,8 @@ INSERT INTO `estado` (`id`, `estado`) VALUES
 CREATE TABLE `horario` (
   `id` int(11) NOT NULL,
   `hora` varchar(50) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `horario`
@@ -137,8 +140,8 @@ CREATE TABLE `mecanico` (
   `telefono` varchar(50) NOT NULL,
   `fecha` date NOT NULL,
   `correo` varchar(50) NOT NULL,
-  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `mecanico`
@@ -157,24 +160,23 @@ INSERT INTO `mecanico` (`id`, `cedula`, `nombres`, `apellido`, `sexo`, `telefono
 
 CREATE TABLE `moto` (
   `id` int(11) NOT NULL,
-  `placa` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `marca` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `placa` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `marca` varchar(45) CHARACTER SET utf8 NOT NULL,
   `modelo` year(4) NOT NULL,
   `cilindraje` int(11) NOT NULL,
-  `tipo` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `tipo` varchar(45) CHARACTER SET utf8 NOT NULL,
   `id_user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `moto`
 --
 
 INSERT INTO `moto` (`id`, `placa`, `marca`, `modelo`, `cilindraje`, `tipo`, `id_user`) VALUES
-(1, 'HHH10H', 'XXXXXX', '2008', 400, 'XRR', 1),
-(3, 'GHY45D', 'YAMAHA', '2021', 150, 'SZRR', 3),
-(4, 'ABC23G', 'KAWAZAKY', '2005', 125, 'KAWA', 1),
-(5, 'YNP10B', 'SUZUKI', '2005', 125, 'BEST', 3),
-(6, 'FAM14G', 'YAMAHA', '2024', 350, 'RAPTOR', 4);
+(6, 'FAM14G', 'YAMAHA', 2024, 350, 'RAPTOR', 4),
+(7, 'FTH24F', 'YAMAHA', 2006, 300, 'NAVI', 9),
+(8, 'FJM13E', 'SUZUKI', 2022, 800, 'FJ', 5),
+(9, 'YNP10A', 'HONDA', 2006, 300, 'XRE', 11);
 
 -- --------------------------------------------------------
 
@@ -188,9 +190,9 @@ CREATE TABLE `pacientes` (
   `sexo` varchar(50) NOT NULL,
   `correo` varchar(50) NOT NULL,
   `telefono` varchar(50) NOT NULL,
-  `fecha` timestamp NULL DEFAULT current_timestamp(),
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `estado` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `pacientes`
@@ -211,7 +213,7 @@ INSERT INTO `pacientes` (`id`, `nombre`, `sexo`, `correo`, `telefono`, `fecha`, 
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `rol` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -233,8 +235,8 @@ CREATE TABLE `servicio` (
   `codigo` int(18) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `precio` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `servicio`
@@ -264,18 +266,20 @@ CREATE TABLE `user` (
   `telefono` bigint(15) NOT NULL,
   `password` varchar(50) NOT NULL,
   `foto` text NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `rol` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
 INSERT INTO `user` (`id`, `nombre`, `correo`, `telefono`, `password`, `foto`, `fecha`, `rol`) VALUES
-(1, 'admin', 'admin@motoft.com', 3105219333, '12345', '', '2024-03-21 18:59:38', 1),
-(3, 'Alejandro', 'alejandro.ytf@gmail.com', 3214567890, '123', '', '2024-04-04 01:18:00', 3),
-(4, 'juan', 'juan@mail.com', 31067432, '12345', '', '2024-04-12 02:51:58', 3);
+(4, 'juan', 'juan@mail.com', 31067432, '12345', '', '2024-04-12 02:51:58', 3),
+(5, 'Camilo', 'camilo@gml.com', 31067432, '8cb2237d0679ca88db6464eac60da96345513964', '', '2024-05-02 18:43:42', 3),
+(9, 'admin', 'admin@motoft.com', 31067432, '8cb2237d0679ca88db6464eac60da96345513964', '', '2024-05-02 18:56:04', 1),
+(10, 'estefa', 'estefa@gmail.com', 123466, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '', '2024-05-02 19:51:42', 3),
+(11, 'Alejandro', 'alejandro.ytf@gmail.com', 3105219333, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '', '2024-05-02 19:53:22', 3);
 
 --
 -- Índices para tablas volcadas
@@ -289,8 +293,7 @@ ALTER TABLE `citas`
   ADD KEY `id_user` (`id_user`),
   ADD KEY `id_moto` (`id_moto`),
   ADD KEY `id_serv` (`id_serv`),
-  ADD KEY `id_mec` (`id_mec`),
-  ADD KEY `id_hora` (`id_hora`);
+  ADD KEY `id_mec` (`id_mec`);
 
 --
 -- Indices de la tabla `diagnostico`
@@ -361,7 +364,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `diagnostico`
@@ -391,7 +394,7 @@ ALTER TABLE `mecanico`
 -- AUTO_INCREMENT de la tabla `moto`
 --
 ALTER TABLE `moto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `pacientes`
@@ -415,7 +418,7 @@ ALTER TABLE `servicio`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
@@ -428,8 +431,7 @@ ALTER TABLE `citas`
   ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`id_moto`) REFERENCES `moto` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `citas_ibfk_3` FOREIGN KEY (`id_serv`) REFERENCES `servicio` (`id`),
-  ADD CONSTRAINT `citas_ibfk_4` FOREIGN KEY (`id_mec`) REFERENCES `mecanico` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `citas_ibfk_5` FOREIGN KEY (`id_hora`) REFERENCES `horario` (`id`);
+  ADD CONSTRAINT `citas_ibfk_4` FOREIGN KEY (`id_mec`) REFERENCES `mecanico` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `moto`
