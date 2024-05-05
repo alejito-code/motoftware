@@ -186,7 +186,7 @@ while ($fila = mysqli_fetch_assoc($result)) :
                 <h6 class="m-0 font-weight-bold text-primary">Lista de tus Diagnosticos</h6>
                 <br>
                 <button id="constancias" type="button">
-                <a id="const" href="#"> Constancias de Citas <i></i> </a></button>
+                <a id="const" href="#"> Constancias de tu Cita de Diagnostico<i></i> </a></button>
                 <div id="cuadro-grande" class="cuadro-grande">
                 <table id="tablaDatos">
                     <thead class="lista">
@@ -200,17 +200,16 @@ while ($fila = mysqli_fetch_assoc($result)) :
                     <tbody class="lista">
                     <?php
                     include "../includes/db.php";
-                    $result = mysqli_query($conexion, "SELECT c.id_cita, c.fecha, u.nombre AS nomu, m.placa, 
-                    me.nombres, s.nombre AS serv, c.observacion FROM citas c 
-                    INNER JOIN user u ON c.id_user = u.id 
-                    INNER JOIN moto m ON c.id_moto = m.id
-                    INNER JOIN servicio s ON c.id_serv = s.id
-                    INNER JOIN mecanico me ON c.id_mec = me.id WHERE u.id = $id_us");
+                    $result = mysqli_query($conexion, "SELECT d.id_diag, d.fecha, u.id AS idu, u.nombre AS nomu, m.placa, 
+                        me.nombres, d.observacion FROM diagnostico d 
+                        INNER JOIN user u ON d.id_user = u.id 
+                        INNER JOIN moto m ON d.id_moto = m.id
+                        INNER JOIN mecanico me ON d.id_mec = me.id WHERE u.id = $id_us");
                     while ($fila = mysqli_fetch_assoc($result)) :
                     ?>
                         <tr>
                             <td id="return" style="width: 80px;"><?php echo $fila['nomu']; ?></td>
-                            <td id="return" style="width: 80px;"><?php echo $fila['id_cita']; ?></td>
+                            <td id="return" style="width: 80px;"><?php echo $fila['id_diag']; ?></td>
                             <td id="return" style="width: 200px;"><?php echo $fila['fecha']; ?></td>
                             <td id="return" style="width: 120px;"><?php echo $fila['placa']; ?></td>
                         </tr>

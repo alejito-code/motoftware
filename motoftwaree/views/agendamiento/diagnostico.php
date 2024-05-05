@@ -59,7 +59,7 @@ if ($varsesion == null || $varsesion = '') {
                     var allDay = arg.allDay; // true si es un evento de todo el día, false en caso contrario
 
                     // asignar los valores de start y end a campos ocultos en el formulario
-                    document.getElementById('start').value = arg.start.toISOString(); // Mantener el formato ISO directamente
+                    document.getElementById('start').value = start;
 
                     calendar.addEvent({
                     title: title,
@@ -138,7 +138,7 @@ if ($varsesion == null || $varsesion = '') {
                     ?>
                 </select>
               </div>    
-          <div class="form-group">
+              <div class="form-group">
             <label for="fecha">Fecha:</label>
             <div id='calendar'></div>
             <input type="hidden" id="start" name="start">
@@ -175,5 +175,3 @@ if ($varsesion == null || $varsesion = '') {
 </body>
 <script src="https://kit.fontawesome.com/86860db679.js" crossorigin="anonymous"></script>
 </html>
-
-/////////////////////////////////////////////////////////////////////////////
