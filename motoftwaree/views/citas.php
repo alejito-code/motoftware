@@ -44,7 +44,7 @@ if ($varsesion == null || $varsesion = '') {
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Lista de Citas</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Lista de las Citas Agendadas</h6>
                 <br>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#citas">
                     <span class="glyphicon glyphicon-plus"></span> Agregar cita <i class="fa fa-plus-circle" aria-hidden="true"></i> </a></button>

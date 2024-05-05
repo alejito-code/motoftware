@@ -73,6 +73,7 @@ if ($varsesion == null || $varsesion = '') {
                                 echo '<option value="' . $consulta['ih'] . '">' . $consulta['hora'] . '</option>';
                               }
                         ?>
+
                             <tr>
                                 <td><?php echo $fila['id']; ?></td>
                                 <td><?php echo $fila['nombre']; ?></td>
@@ -92,12 +93,13 @@ if ($varsesion == null || $varsesion = '') {
                             </tr>
 
 
-                        <?php endwhile; ?>
+                            <?php endwhile; ?>
 
-                        </tbody>
                     </table>
 
-
+                    <script src="../package/dist/sweetalert2.all.js"></script>
+                    <script src="../package/dist/sweetalert2.all.min.js"></script>
+                    <script src="../package/jquery-3.6.0.min.js"></script>
                     <script>
                         $('.btn-del').on('click', function(e) {
                             e.preventDefault();
@@ -128,11 +130,6 @@ if ($varsesion == null || $varsesion = '') {
 
                         })
                     </script>
-                    <script src="../package/dist/sweetalert2.all.js"></script>
-                    <script src="../package/dist/sweetalert2.all.min.js"></script>
-                    <script src="../package/jquery-3.6.0.min.js"></script>
-
-
 
                 </div>
             </div>
@@ -141,21 +138,9 @@ if ($varsesion == null || $varsesion = '') {
     </div>
     <!-- /.container-fluid -->
 
-    </div>
-    <!-- End of Main Content -->
-
     <?php include "../includes/footer.php"; ?>
 
     <?php include "../includes/form_pacientes.php"; ?>
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-
-
 
 </body>
 
