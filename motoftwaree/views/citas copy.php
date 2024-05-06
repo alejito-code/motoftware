@@ -66,13 +66,13 @@ if ($varsesion == null || $varsesion = '') {
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
     <tr>
-        <th>ID Diagnóstico</th>
+        <th>Id diag</th>
         <th>Fecha</th>
         <th>Nombre</th>
         <th>Placa</th>
         <th>Mecánico</th>
-        <th>Observación</th>
-        <th>Acciones</th>
+        <th>Archivo</th>
+        <th style="width: 20px;">Acciones</th>
     </tr>
 </thead>
 <?php
@@ -99,6 +99,7 @@ if (mysqli_num_rows($result) == 0) {
 
 // Mostrar los datos de la tabla
 while ($fila = mysqli_fetch_assoc($result)) :
+    // Obtener la observación ya codificada en Base64
     $observacion = base64_encode($fila['observacion']);
 ?>
     <tr>
@@ -107,17 +108,27 @@ while ($fila = mysqli_fetch_assoc($result)) :
         <td><?php echo $fila['nomu'];?></td>
         <td><?php echo $fila['placa'];?></td>
         <td><?php echo $fila['nombres'];?></td>
-        <td><a href="data:application/pdf;base64,<?php echo $observacion;?>" target="_blank"><?php echo $fila['id_diag'];?></a></td>
+        <td>
+            <?php
+            // Generar una URL temporal para acceder al archivo BLOB
+            $archivo_url = 'data:application/pdf;base64,' . $observacion;
+            ?>
+            <!-- Mostrar un enlace para abrir la vista previa del PDF en una nueva pestaña -->
+            <a href="<?php echo $archivo_url; ?>" target="_blank">Ver PDF</a>
+        </td>
+<style>
+    a{
+        color: black;
+    }
+</style>
         <td>
             <?php 
                 if( $id_us == $fila['idu']){
            ?>
-                <a class="btn btn-warning" href="../includes/editar_diagnostico.php?id_diagnostico=<?php echo $fila['id_diag']?> ">
-                    <i class="fa fa-edit "></i> </a>
             <?php
                 }
            ?>
-                <a href="../includes/eliminar_diagnostico.php?id_diagnostico=<?php echo $fila['id_diag']?> " class="btn btn-danger btn-del">
+                <a href="../includes/eliminar_diagnostico.php?id_diag=<?php echo $fila['id_diag']?> " class="btn btn-danger btn-del">
                     <i class="fa fa-trash "></i></a></button>
             </td>
         </tr>
@@ -220,7 +231,7 @@ while ($fila = mysqli_fetch_assoc($result)) :
                 <button id="cierre">Cerrar</button>
                 </div>
                 <style>
-                 #const {
+                #const {
                      color: #fff;
                 }
                 #constancias {
@@ -241,17 +252,22 @@ while ($fila = mysqli_fetch_assoc($result)) :
                     left: 50%;
                     transform: translate(-50%, -50%);
                     width: 60%;
-                    height: 60%;
-                    max-width: 800px; /* Máximo ancho para el cuadro */
-                    max-height: 600px; /* Máximo alto para el cuadro */
+                    max-width: 50%; /* Máximo ancho para el cuadro */
+                    max-height: 80%; /* Máximo alto para el cuadro */
+                    overflow: auto;
                     background-color: rgba(0, 0, 0, 0.5);
                     z-index: 1000; /* Asegura que esté en frente de todo */
-                    transition: top 0.5s ease;
+                    transition: top 0.5s ease, max-width 0.5s ease, max-height 0.5s ease;;
                     backdrop-filter: blur(10px); /* Efecto de desenfoque para el fondo */
                 }
                 #cuadro-grande.active {
                     top: 50%; /* Terminamos la trancision con el cuadro */
                     display: block; /* Muestra el cuadro grande al agregar la clase "active" */
+                }
+                #cuadro-grande td {
+                    height: auto; /* Altura automática para los elementos dentro del cuadro */
+                    min-height: 100px; /* Altura mínima si lo deseas */
+                    padding: 20px; /* Espacio interior para los elementos */
                 }
                 .lista {
                     display: table;
@@ -333,8 +349,7 @@ while ($fila = mysqli_fetch_assoc($result)) :
                                 <th>Nombre</th>
                                 <th>Placa</th>
                                 <th>Mecanico</th>
-                                <th>Archivo</th>
-                                <th>Acciones..</th>
+                                <th style="width: 20px;">Acciones..</th>
                             </tr>
                         </thead>
 
@@ -370,13 +385,10 @@ while ($fila = mysqli_fetch_assoc($result)) :
         <td><?php echo $fila['nomu'];?></td>
         <td><?php echo $fila['placa'];?></td>
         <td><?php echo $fila['nombres'];?></td>
-        <td><a href="data:application/pdf;base64,<?php echo $observacion;?>" target="_blank"><?php echo $fila['id_diag'];?></a></td>
         <td>
             <?php 
                 if( $id_us == $fila['idu']){
            ?>
-                <a class="btn btn-warning" href="../includes/editar_diagnostico.php?id_diag=<?php echo $fila['id_diag']?> ">
-                    <i class="fa fa-edit "></i> </a>
             <?php
                 }
            ?>

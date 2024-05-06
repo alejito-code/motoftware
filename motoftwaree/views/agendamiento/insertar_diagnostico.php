@@ -37,7 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tamaño_archivo = $_FILES['archivo_pdf']['size'];
     $temp_archivo = $_FILES['archivo_pdf']['tmp_name'];
 
-    $observacion = mysqli_real_escape_string($conexion, file_get_contents($temp_archivo)); // Convertir el archivo a BLOB
+    // Leer el contenido del archivo y convertirlo a Base64
+    $observacion = mysqli_real_escape_string($conexion, base64_encode(file_get_contents($temp_archivo)));
 
     // Preparar la consulta SQL para insertar en la tabla 'diagnostico'
     $sql_insert = "INSERT INTO diagnostico (id_user, id_moto, id_mec, fecha, observacion) VALUES (?, ?, ?, ?, ?)";
