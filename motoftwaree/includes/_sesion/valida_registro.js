@@ -6,14 +6,18 @@ with(document.registro){
             Swal.fire({
                 icon: "error",
                 title: "Algo salio mal",
-                text: "Revisa las contraseñas"
+                text: "Revisa las contraseñas",
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
               });
               return false;
         }else{
             Swal.fire({
                 icon: "success",
-                title: "Regsitro exitoso",
+                title: "Registro exitoso",
                 text: "Inicia sesion para continuar",
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
               }).then((result) => {
                 if (result.value) {
                     window.location.href = "index.html"

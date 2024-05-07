@@ -273,7 +273,6 @@ function insert_cita($start)
     }
 }
 
-
 function insert_mec()
 {
     include "db.php";

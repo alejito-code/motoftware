@@ -44,7 +44,7 @@ if ($varsesion == null || $varsesion = '') {
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Lista de los diagnosticos</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Listado de los Diagnosticos Agendados</h6>
                 <br>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#citas">
                     <span class="glyphicon glyphicon-plus"></span> Agregar cita <i class="fa fa-plus-circle" aria-hidden="true"></i> </a></button>
@@ -53,63 +53,86 @@ if ($varsesion == null || $varsesion = '') {
                 <button type="button" class="btn btn-success">
                 <a href="./reportes/ex_cita.php"> Excel <i class="fas fa-table"></i> </a></button>
 
+                <style>
+                a:hover{
+                    color: white;
+                }
+               </style> 
+
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th># Cita</th>
-                                <th>Fecha_Cita</th>
-                                <th>Horario</th>
-                                <th>Nombre</th>
-                                <th>Placa</th>
-                                <th>Mecanico</th>
-                                <th>Servicio</th>
-                                <th>Observacion</th>
-                                <th>Acciones..</th>
-                            </tr>
-                        </thead>
+                    <thead>
+    <tr>
+        <th>Id diag</th>
+        <th>Fecha</th>
+        <th>Nombre</th>
+        <th>Placa</th>
+        <th>Mecánico</th>
+        <th>Archivo</th>
+        <th style="width: 20px;">Acciones</th>
+    </tr>
+</thead>
+<?php
+include "../includes/db.php";
 
-                        <?php
+// Consulta SQL
+$result = mysqli_query($conexion, "SELECT d.id_diag, d.fecha, u.id AS idu, u.nombre AS nomu, m.placa, 
+                        me.nombres, d.observacion FROM diagnostico d 
+                        INNER JOIN user u ON d.id_user = u.id 
+                        INNER JOIN moto m ON d.id_moto = m.id
+                        INNER JOIN mecanico me ON d.id_mec = me.id");
 
-                        include "../includes/db.php";
-                        $result = mysqli_query($conexion, "SELECT c.id_cita, c.fecha, c.hora, u.id AS idu, u.nombre AS nomu, m.placa, 
-                        me.nombres, s.nombre AS serv, c.observacion FROM citas c 
-                        INNER JOIN user u ON c.id_user = u.id 
-                        INNER JOIN moto m ON c.id_moto = m.id
-                        INNER JOIN servicio s ON c.id_serv = s.id
-                        INNER JOIN mecanico me ON c.id_mec = me.id");
-                        while ($fila = mysqli_fetch_assoc($result)) :
+// Verificar si la consulta falló
+if (!$result) {
+    echo "Error en la consulta: ". mysqli_error($conexion);
+    die();
+}
 
-                        ?>
-                            <tr>
-                                <td><?php echo $fila['id_cita']; ?></td>
-                                <td><?php echo $fila['fecha']; ?></td>
-                                <td><?php echo $fila['hora']; ?></td>
-                                <td><?php echo $fila['nomu']; ?></td>
-                                <td><?php echo $fila['placa']; ?></td>    
-                                <td><?php echo $fila['nombres']; ?></td>
-                                <td><?php echo $fila['serv']; ?></td>
-                                <td><?php echo $fila['observacion']; ?></td>
+// Verificar si hay filas en el resultado
+if (mysqli_num_rows($result) == 0) {
+    echo "No hay filas en el resultado";
+    die();
+}
 
-                                <td>
-                                <?php 
-                                    if( $id_us == $fila['idu']){
-                                 ?>
-                                    <a class="btn btn-warning" href="../includes/editar_cita.php?id_cita=<?php echo $fila['id_cita'] ?> ">
-                                        <i class="fa fa-edit "></i> </a>
-                                <?php
-                                    }
-                                ?>
-                                    <a href="../includes/eliminar_cita.php?id_cita=<?php echo $fila['id_cita'] ?> " class="btn btn-danger btn-del">
-                                        <i class="fa fa-trash "></i></a></button>
-                                </td>
-                            </tr>
-
-
-                        <?php endwhile; ?>
-
+// Mostrar los datos de la tabla
+while ($fila = mysqli_fetch_assoc($result)) :
+    // Obtener la observación ya codificada en Base64
+    $observacion = base64_encode($fila['observacion']);
+?>
+    <tr>
+        <td><?php echo $fila['id_diag'];?></td>
+        <td><?php echo $fila['fecha'];?></td>
+        <td><?php echo $fila['nomu'];?></td>
+        <td><?php echo $fila['placa'];?></td>
+        <td><?php echo $fila['nombres'];?></td>
+        <td>
+            <?php
+            // Generar una URL temporal para acceder al archivo BLOB
+            $archivo_url = 'data:application/pdf;base64,' . $observacion;
+            ?>
+            <!-- Mostrar un enlace para abrir la vista previa del PDF en una nueva pestaña -->
+            <a href="<?php echo $archivo_url; ?>" target="_blank">Ver PDF</a>
+        </td>
+<style>
+    a{
+        color: black;
+    }
+</style>
+        <td>
+            <?php 
+                if( $id_us == $fila['idu']){
+           ?>
+            <?php
+                }
+           ?>
+                <a href="../includes/eliminar_diagnostico.php?id_diag=<?php echo $fila['id_diag']?> " class="btn btn-danger btn-del">
+                    <i class="fa fa-trash "></i></a></button>
+            </td>
+        </tr>
+<?php endwhile;?>
                         </tbody>
                     </table>
 
@@ -171,35 +194,34 @@ if ($varsesion == null || $varsesion = '') {
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Lista de tus citas para diagnostico</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Lista de tus Diagnosticos</h6>
                 <br>
                 <button id="constancias" type="button">
-                <a id="const" href="#"> Constancias de cita para diagnostico <i></i> </a></button>
+                <a id="const" href="#"> Constancias de tu Cita de Diagnostico<i></i> </a></button>
                 <div id="cuadro-grande" class="cuadro-grande">
                 <table id="tablaDatos">
                     <thead class="lista">
                         <tr>
                             <th id="atributos" style="width: 80px;">Nombre</th>
                             <th id="atributos" style="width: 80px;"># Cita</th>
-                            <th id="atributos" style="width: 120px;">Fecha_Cita</th>
-                            <th id="atributos" style="width: 80px;">Horario</th>
+                            <th id="atributos" style="width: 200px;">Fecha_Cita</th>
                             <th id="atributos" style="width: 120px;">Placa</th>
                         </tr>
                     </thead>
                     <tbody class="lista">
-                        <?php
-                        include "../includes/db.php";
-                        $result = mysqli_query($conexion, "SELECT c.id_cita, c.fecha, c.hora, u.nombre AS nomu, m.placa FROM citas c
-                        INNER JOIN user u ON c.id_user = u.id
-                        INNER JOIN moto m ON c.id_moto = m.id
-                        WHERE u.id = $id_us");
-                        while ($fila = mysqli_fetch_assoc($result)) :
-                        ?>
+                    <?php
+                    include "../includes/db.php";
+                    $result = mysqli_query($conexion, "SELECT d.id_diag, d.fecha, u.id AS idu, u.nombre AS nomu, m.placa, 
+                        me.nombres, d.observacion FROM diagnostico d 
+                        INNER JOIN user u ON d.id_user = u.id 
+                        INNER JOIN moto m ON d.id_moto = m.id
+                        INNER JOIN mecanico me ON d.id_mec = me.id WHERE u.id = $id_us");
+                    while ($fila = mysqli_fetch_assoc($result)) :
+                    ?>
                         <tr>
                             <td id="return" style="width: 80px;"><?php echo $fila['nomu']; ?></td>
-                            <td id="return" style="width: 80px;"><?php echo $fila['id_cita']; ?></td>
-                            <td id="return" style="width: 120px;"><?php echo $fila['fecha']; ?></td>
-                            <td id="return" style="width: 80px;"><?php echo $fila['hora']; ?></td>
+                            <td id="return" style="width: 80px;"><?php echo $fila['id_diag']; ?></td>
+                            <td id="return" style="width: 200px;"><?php echo $fila['fecha']; ?></td>
                             <td id="return" style="width: 120px;"><?php echo $fila['placa']; ?></td>
                         </tr>
                         <?php endwhile; ?>
@@ -209,7 +231,7 @@ if ($varsesion == null || $varsesion = '') {
                 <button id="cierre">Cerrar</button>
                 </div>
                 <style>
-                 #const {
+                #const {
                      color: #fff;
                 }
                 #constancias {
@@ -218,7 +240,7 @@ if ($varsesion == null || $varsesion = '') {
                     margin-top: -40px;
                     border-radius: 10px;
                     background-color: #6b6d7d !important;
-                    border-color: #656776 !important;
+                    border: none;
                 }
                 #constancias:hover {
                     background-color: #656776;
@@ -230,17 +252,22 @@ if ($varsesion == null || $varsesion = '') {
                     left: 50%;
                     transform: translate(-50%, -50%);
                     width: 60%;
-                    height: 60%;
-                    max-width: 800px; /* Máximo ancho para el cuadro */
-                    max-height: 600px; /* Máximo alto para el cuadro */
+                    max-width: 50%; /* Máximo ancho para el cuadro */
+                    max-height: 80%; /* Máximo alto para el cuadro */
+                    overflow: auto;
                     background-color: rgba(0, 0, 0, 0.5);
                     z-index: 1000; /* Asegura que esté en frente de todo */
-                    transition: top 0.5s ease;
+                    transition: top 0.5s ease, max-width 0.5s ease, max-height 0.5s ease;;
                     backdrop-filter: blur(10px); /* Efecto de desenfoque para el fondo */
                 }
                 #cuadro-grande.active {
                     top: 50%; /* Terminamos la trancision con el cuadro */
                     display: block; /* Muestra el cuadro grande al agregar la clase "active" */
+                }
+                #cuadro-grande td {
+                    height: auto; /* Altura automática para los elementos dentro del cuadro */
+                    min-height: 100px; /* Altura mínima si lo deseas */
+                    padding: 20px; /* Espacio interior para los elementos */
                 }
                 .lista {
                     display: table;
@@ -314,48 +341,65 @@ if ($varsesion == null || $varsesion = '') {
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-    <thead>
-        <tr>
-            <th># Diagnostico</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Usuario</th>
-            <th>Moto</th>
-            <th>Mecánico</th>
-            <th>Archivo</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php
-    include "../includes/db.php";
-    $result = mysqli_query($conexion, "SELECT d.id, d.fecha, d.hora, u.nombre AS nomu, m.placa, 
-        me.nombres, s.nombre AS serv, d.archivo FROM diagnostico d 
-        INNER JOIN user u ON d.id_usuario = u.id 
-        INNER JOIN moto m ON d.id_moto = m.id
-        INNER JOIN servicio s ON d.id_servicio = s.id
-        INNER JOIN mecanico me ON d.id_mecanico = me.id WHERE u.id = $id_us");
-    while ($fila = mysqli_fetch_assoc($result)) :
-    ?>
-        <tr>
-            <td><?php echo $fila['id']; ?></td>
-            <td><?php echo $fila['fecha']; ?></td>
-            <td><?php echo $fila['hora']; ?></td>
-            <td><?php echo $fila['nomu']; ?></td>
-            <td><?php echo $fila['placa']; ?></td>
-            <td><?php echo $fila['nombres']; ?></td>
-            <td><a href="../ruta/del/archivo/<?php echo $fila['archivo']; ?>" target="_blank">Vista previa</a></td>
-            <td>
-                <a class="btn btn-warning" href="../includes/editar_diagnostico.php?id=<?php echo $fila['id']; ?>">
-                    <i class="fa fa-edit"></i> </a>
-                <a href="../includes/eliminar_diagnostico.php?id=<?php echo $fila['id']; ?>" class="btn btn-danger btn-del">
-                    <i class="fa fa-trash"></i></a>
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th># Cita</th>
+                                <th>Fecha_Cita</th>
+                                <th>Nombre</th>
+                                <th>Placa</th>
+                                <th>Mecanico</th>
+                                <th style="width: 20px;">Acciones..</th>
+                            </tr>
+                        </thead>
+
+                        <?php
+include "../includes/db.php";
+
+// Consulta SQL
+$result = mysqli_query($conexion, "SELECT d.id_diag, d.fecha, u.id AS idu, u.nombre AS nomu, m.placa, 
+                        me.nombres, d.observacion FROM diagnostico d 
+                        INNER JOIN user u ON d.id_user = u.id 
+                        INNER JOIN moto m ON d.id_moto = m.id
+                        INNER JOIN mecanico me ON d.id_mec = me.id WHERE u.id = $id_us");
+
+// Verificar si la consulta falló
+if (!$result) {
+    echo "Error en la consulta: ". mysqli_error($conexion);
+    die();
+}
+
+// Verificar si hay filas en el resultado
+if (mysqli_num_rows($result) == 0) {
+    echo "No hay filas en el resultado";
+    die();
+}
+
+// Mostrar los datos de la tabla
+while ($fila = mysqli_fetch_assoc($result)) :
+    $observacion = base64_encode($fila['observacion']);
+?>
+    <tr>
+        <td><?php echo $fila['id_diag'];?></td>
+        <td><?php echo $fila['fecha'];?></td>
+        <td><?php echo $fila['nomu'];?></td>
+        <td><?php echo $fila['placa'];?></td>
+        <td><?php echo $fila['nombres'];?></td>
+        <td>
+            <?php 
+                if( $id_us == $fila['idu']){
+           ?>
+            <?php
+                }
+           ?>
+                <a href="../includes/eliminar_diagnostico.php?id_diag=<?php echo $fila['id_diag']?> " class="btn btn-danger btn-del">
+                    <i class="fa fa-trash "></i></a></button>
             </td>
         </tr>
-    <?php endwhile; ?>
-    </tbody>
-</table>
+<?php endwhile;?>
+                        </tbody>
+                    </table>
+
 
                     <script>
                         $('.btn-del').on('click', function(e) {

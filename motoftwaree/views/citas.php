@@ -44,7 +44,7 @@ if ($varsesion == null || $varsesion = '') {
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Lista de Citas</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Lista de las Citas Agendadas</h6>
                 <br>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#citas">
                     <span class="glyphicon glyphicon-plus"></span> Agregar cita <i class="fa fa-plus-circle" aria-hidden="true"></i> </a></button>
@@ -235,17 +235,22 @@ if ($varsesion == null || $varsesion = '') {
                     left: 50%;
                     transform: translate(-50%, -50%);
                     width: 60%;
-                    height: 60%;
-                    max-width: 800px; /* Máximo ancho para el cuadro */
-                    max-height: 600px; /* Máximo alto para el cuadro */
+                    max-width: 50%; /* Máximo ancho para el cuadro */
+                    max-height: 80%; /* Máximo alto para el cuadro */
+                    overflow: auto;
                     background-color: rgba(0, 0, 0, 0.5);
                     z-index: 1000; /* Asegura que esté en frente de todo */
-                    transition: top 0.5s ease;
+                    transition: top 0.5s ease, max-width 0.5s ease, max-height 0.5s ease;;
                     backdrop-filter: blur(10px); /* Efecto de desenfoque para el fondo */
                 }
                 #cuadro-grande.active {
                     top: 50%; /* Terminamos la trancision con el cuadro */
                     display: block; /* Muestra el cuadro grande al agregar la clase "active" */
+                }
+                #cuadro-grande td {
+                    height: auto; /* Altura automática para los elementos dentro del cuadro */
+                    min-height: 100px; /* Altura mínima si lo deseas */
+                    padding: 20px; /* Espacio interior para los elementos */
                 }
                 .lista {
                     display: table;
@@ -355,8 +360,6 @@ if ($varsesion == null || $varsesion = '') {
                                 <td><?php echo $fila['observacion']; ?></td>
 
                                 <td>
-                                    <a class="btn btn-warning" href="../includes/editar_cita.php?id_cita=<?php echo $fila['id_cita'] ?> ">
-                                        <i class="fa fa-edit "></i> </a>
                                     <a href="../includes/eliminar_cita.php?id_cita=<?php echo $fila['id_cita'] ?> " class="btn btn-danger btn-del">
                                         <i class="fa fa-trash "></i></a></button>
                                 </td>
