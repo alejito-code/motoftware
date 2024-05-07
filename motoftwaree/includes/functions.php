@@ -63,7 +63,7 @@ if (isset($_POST['accion'])) {
             break;
 
         case 'editar_cita':
-            editar_cita();
+            editar_cita($start);
             break;
     }
 }
@@ -425,12 +425,20 @@ function editar_hora()
     }
 }
 
-function editar_cita()
+function editar_cita($start)
 {
     include "db.php";
     extract($_POST);
 
-    $consulta = "UPDATE citas SET fecha = '$fecha', hora = '$hora', id_moto = '$id_moto', id_mec = '$id_mec',
+    echo "Valor de 'id': " . $_POST['id'];
+    echo "Valor de 'id': " . $_POST['id_us'];
+    echo "Valor de 'placa': " . $_POST['id_moto'];
+    echo "Valor de 'mec': " . $_POST['id_mec'];
+    echo "Valor de 'falla': " . $_POST['id_serv'];
+    echo "Valor de 'fecha': " . $_POST['fecha'];
+    echo "Valor de 'obser': " . $_POST['observacion'];
+
+    $consulta = "UPDATE citas SET fecha = '$fecha', id_moto = '$id_moto', id_mec = '$id_mec',
     id_serv = '$id_serv', observacion = '$observacion' 
     WHERE id_user = '$id_us' AND id_cita = '$id'";
 

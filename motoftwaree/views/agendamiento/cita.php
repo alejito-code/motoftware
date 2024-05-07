@@ -26,6 +26,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
+            
             var today = new Date(); // obtener la fecha actual
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -98,12 +99,13 @@
 
     </style>
 </head>
-</head>
 <body>
 <a href="../selec_cita.php" class="atras">Atras</a>
-    <h1>¡Agenda tu cita por falla electrica aquí!</h1>
+    <h1>¡Agenda tu cita aquí!</h1>
     <div class="container">
-        <h2>Formulario para Falla electrica</h2>
+        <h2>Formulario para Agenda
+            
+        </h2>
         <form id="cita-form" action="../../includes/functions.php" method="POST">
             <div class="form-group">
               <label>Selecione la placa del vehiculo</label>
