@@ -109,8 +109,8 @@ if ($varsesion == null || $varsesion = '') {
                                 text: "¡No podrás revertir esto!!",
                                 icon: 'warning',
                                 showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
+                                confirmButtonColor: '#8E2317',
+                                cancelButtonColor: '#8E2317',
                                 confirmButtonText: 'Si, eliminar!',
                                 cancelButtonText: 'Cancelar!',
                             }).then((result) => {
@@ -119,7 +119,8 @@ if ($varsesion == null || $varsesion = '') {
                                         Swal.fire(
                                             'Eliminado!',
                                             'El servicio fue eliminado.',
-                                            'success'
+                                            'success',
+                                            confirmButtonColor: '#8E2317'
                                         )
                                     }
 

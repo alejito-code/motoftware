@@ -21,6 +21,7 @@ if ($actualsesion == null || $actualsesion == '') {
     <meta name="author" content="">
 
     <script src="../js/jquery.min.js"></script>
+    <link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>
 
 </head>
 <?php include "../includes/header.php"; ?>
@@ -107,17 +108,18 @@ if ($actualsesion == null || $actualsesion == '') {
                                 text: "¡No podrás revertir esto!!",
                                 icon: 'warning',
                                 showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
+                                confirmButtonColor: '#8E2317',
+                                cancelButtonColor: '#8E2317',
                                 confirmButtonText: 'Si, eliminar!',
                                 cancelButtonText: 'Cancelar!',
                             }).then((result) => {
                                 if (result.value) {
                                     if (result.isConfirmed) {
                                         Swal.fire(
-                                            'Eliminado!',
-                                            'El usuario fue eliminado.',
-                                            'success'
+                                            title: 'Eliminado!',
+                                            text: 'El usuario fue eliminado.',
+                                            icon: 'success',
+                                            confirmButtonColor: '#8E2317'
                                         )
                                     }
 
