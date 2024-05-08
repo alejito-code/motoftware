@@ -234,9 +234,9 @@ if ($varsesion == null || $varsesion = '') {
                     top: -100%; /* Empieza arriba de la pantalla */
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    width: 60%;
+                    width: 80%;
                     max-width: 50%; /* Máximo ancho para el cuadro */
-                    max-height: 80%; /* Máximo alto para el cuadro */
+                    max-height: 100%; /* Máximo alto para el cuadro */
                     overflow: auto;
                     background-color: rgba(0, 0, 0, 0.5);
                     z-index: 1000; /* Asegura que esté en frente de todo */
@@ -273,8 +273,9 @@ if ($varsesion == null || $varsesion = '') {
                 }
                 #contenido {
                     position: absolute;
-                    top: 0;
-                    right: 0;
+                    top: 100%;
+                    right: 20px;
+                    left: 20px;
                     margin: 5px;
                     z-index: 1;
                     border: 2px solid black; /* Borde de color #6b6d7d */
