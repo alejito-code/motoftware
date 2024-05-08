@@ -72,7 +72,7 @@ include '../includes/header.php';
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <a href="//localhost/motoftware_final/motoftwaree/views/citas.php" class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        <a href="./citas.php" class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Numero de citas</a>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                         <?php 
@@ -143,7 +143,7 @@ include '../includes/header.php';
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <a href="medicos.php" class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                        <a href="./mecanicos.php" class="text-xs font-weight-bold text-info text-uppercase mb-1">
                             Numero de Mecanicos </a>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">

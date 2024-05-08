@@ -34,7 +34,7 @@ if ($actualsesion == null || $actualsesion == '') {
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
-        <h2 class="subtitle">¡Welcome Administrator <?php echo $_SESSION['nombre']; ?>!</h2>
+        <h2 class="subtitle">¡Bienvenido Administrator <?php echo $_SESSION['nombre']; ?>!</h2>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
