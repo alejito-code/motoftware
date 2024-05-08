@@ -300,7 +300,6 @@ function insert_paciente()
 {
     include "db.php";
     extract($_POST);
-
     $consulta = "INSERT INTO pacientes (nombre, sexo, correo, telefono,  estado)
     VALUES ('$nombre', '$sexo', '$correo', '$telefono',  '$estado')";
     $resultado = mysqli_query($conexion, $consulta);
@@ -428,7 +427,7 @@ function insert_mec()
         document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
                 title: '¡Bien!',
-                text: 'Cita agendada super bien',
+                text: 'El registro fue actualizado correctamente',
                 icon: 'success',
                 confirmButtonText: 'OK',
                 confirmButtonColor: '#8E2317'

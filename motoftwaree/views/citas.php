@@ -123,8 +123,7 @@ if ($varsesion == null || $varsesion = '') {
                     <script>
                         $('.btn-del').on('click', function(e) {
                             e.preventDefault();
-                            const href = $(this).attr('href')
-
+                            const href = $(this).attr('href');
                             Swal.fire({
                                 title: 'Estas seguro de eliminar esta cita?',
                                 text: "¡No podrás revertir esto!!",
@@ -136,20 +135,16 @@ if ($varsesion == null || $varsesion = '') {
                                 cancelButtonText: 'Cancelar!',
                             }).then((result) => {
                                 if (result.value) {
-                                    if (result.isConfirmed) {
-                                        Swal.fire(
-                                            'Eliminado!',
-                                            'El usuario fue eliminado.',
-                                            'success',
-                                            confirmButtonColor: '#8E2317'
-                                        )
-                                    }
-
-                                    document.location.href = href;
+                                    Swal.fire(
+                                        'Eliminado!',
+                                        'El usuario fue eliminado.',
+                                        'success'
+                                    ).then(() => {
+                                        document.location.href = href;
+                                    });
                                 }
-                            })
-
-                        })
+                            });
+                        });
                     </script>
                     <script src="../package/dist/sweetalert2.all.js"></script>
                     <script src="../package/dist/sweetalert2.all.min.js"></script>
