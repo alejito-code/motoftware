@@ -82,15 +82,17 @@
                             url: '../includes/_sesion/validar.php',
                             data: {nombre: nombre,correo: correo, telefono: telefono, password: password, rol: rol},
                             success: function(data){
-                            Swal.fire({
-                                        'title': '¡Mensaje!',
-                                        'text': data,
-                                        'icon': 'success',
-                                        'showConfirmButton': 'false',
-                                        'timer': '1500'
-                                        }).then(function() {
-                        window.location = "usuarios.php";
-                    });
+                                Swal.fire({
+                                title: 'Éxito!',
+                                text: 'Usuario agendado correctamente',
+                                icon: 'success',
+                                confirmButtonText: 'Ok',
+                                confirmButtonColor: '#8E2317'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.assign('usuarios.php');
+                                }
+                            });
                                     
                             } ,
                             

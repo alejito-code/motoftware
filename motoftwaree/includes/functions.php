@@ -63,7 +63,7 @@ if (isset($_POST['accion'])) {
             break;
 
         case 'editar_cita':
-            editar_cita();
+            editar_cita($start);
             break;
     }
 }
@@ -128,13 +128,23 @@ function acceso_user()
             header('Location: ../views/index.php');
         }
     } else {
-
-
-        echo "<script language='JavaScript'>
-        alert('Usuario o Contraseña Incorrecta');
-        location.assign('./_sesion/index.html');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Usuario o Contraseña Incorrecta',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = './_sesion/index.html';
+            });
+            document.activeElement.blur();
+        });
         </script>";
-        session_destroy();
+        exit();
     }
 }
 
@@ -148,15 +158,41 @@ function insert_esp()
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El servicio se ha agregado un nuevo servicio exitosamente');
-        location.assign('../views/servicios.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El servicio se ha agregado exitosamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/servicios.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ha ocurrido un error, intentalo de nuevo');
-         location.assign('../views/servicios.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/servicios.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }
 
@@ -175,15 +211,41 @@ function insert_moto()
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El vehiculo fue registrado exitosamente');
-        location.assign('../views/moto.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El vehiculo fue registrado exitosamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/moto.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ha ocurrido un error, intenta de nuevo');
-         location.assign('../views/moto.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/moto.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }
 
@@ -196,15 +258,41 @@ function insert_horario()
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El registro fue actualizado correctamente');
-        location.assign('../views/horarios.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El registro fue actualizado correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/horarios.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ya valio hablale al ing :v');
-         location.assign('../views/horarios.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/horarios.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }
 
@@ -212,21 +300,46 @@ function insert_paciente()
 {
     include "db.php";
     extract($_POST);
-
     $consulta = "INSERT INTO pacientes (nombre, sexo, correo, telefono,  estado)
     VALUES ('$nombre', '$sexo', '$correo', '$telefono',  '$estado')";
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El registro fue actualizado correctamente');
-        location.assign('../views/pacientes.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El registro fue actualizado correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/pacientes.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ya valio hablale al ing :v');
-         location.assign('../views/pacientes.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/pacientes.php'';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }
 
@@ -261,15 +374,41 @@ function insert_cita($start)
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('Cita agendada exitosamente');
-        location.assign('../views/selec_cita.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'Cita agendada super bien',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/selec_cita.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ha sucedido un error, intenta de nuevo');
-         location.assign('../views/selec_cita.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/selec_cita.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }
 
@@ -282,15 +421,41 @@ function insert_mec()
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El registro fue actualizado correctamente');
-        location.assign('../views/mecanicos.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El registro fue actualizado correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/mecanicos.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ya valio hablale al ing :v');
-         location.assign('../views/mecanicos.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/mecanicos.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit(); 
     }
 }
 
@@ -304,15 +469,41 @@ function editar_user()
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El registro fue actualizado correctamente');
-        location.assign('../views/usuarios.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El registro fue actualizado correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/usuarios.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ya valio hablale al ing :v');
-         location.assign('../views/usuarios.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/usuarios.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }
 
@@ -325,15 +516,41 @@ function editar_paciente()
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El registro fue actualizado correctamente');
-        location.assign('../views/pacientes.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El registro fue actualizado correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/pacientes.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ya valio hablale al ing :v');
-         location.assign('../views/pacientes.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/pacientes.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }
 
@@ -345,15 +562,41 @@ function editar_esp()
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El registro fue actualizado correctamente');
-        location.assign('../views/servicios.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El registro fue actualizado correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/servicios.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ya valio hablale al ing :v');
-         location.assign('../views/servicios.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/servicios.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }
 
@@ -371,15 +614,41 @@ function editar_moto()
     }
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El registro fue actualizado correctamente');
-        location.assign('../views/moto.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El registro fue actualizado correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/moto.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ya valio hablale al ing :v');
-         location.assign('../views/moto.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/moto.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }
 
@@ -392,15 +661,41 @@ function editar_mec()
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El registro fue actualizado correctamente');
-        location.assign('../views/mecanicos.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El registro fue actualizado correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/mecanicos.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ya valio hablale al ing :v');
-         location.assign('../views/mecanicos.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/mecanicos.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }
 
@@ -412,38 +707,98 @@ function editar_hora()
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El registro fue actualizado correctamente');
-        location.assign('../views/horarios.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El registro fue actualizado correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/horarios.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ya valio hablale al ing :v');
-         location.assign('../views/horarios.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/horarios.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }
 
-function editar_cita()
+function editar_cita($start)
 {
     include "db.php";
     extract($_POST);
 
-    $consulta = "UPDATE citas SET fecha = '$fecha', hora = '$hora', id_moto = '$id_moto', id_mec = '$id_mec',
+    echo "Valor de 'id': " . $_POST['id'];
+    echo "Valor de 'id': " . $_POST['id_us'];
+    echo "Valor de 'placa': " . $_POST['id_moto'];
+    echo "Valor de 'mec': " . $_POST['id_mec'];
+    echo "Valor de 'falla': " . $_POST['id_serv'];
+    echo "Valor de 'fecha': " . $_POST['fecha'];
+    echo "Valor de 'obser': " . $_POST['observacion'];
+
+    $consulta = "UPDATE citas SET fecha = '$fecha', id_moto = '$id_moto', id_mec = '$id_mec',
     id_serv = '$id_serv', observacion = '$observacion' 
     WHERE id_user = '$id_us' AND id_cita = '$id'";
 
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "<script language='JavaScript'>
-        alert('El registro fue actualizado correctamente');
-        location.assign('../views/citas.php');
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El registro fue actualizado correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/citas.php';
+            });
+            document.activeElement.blur();
+        });
         </script>";
+        exit();
     } else {
-        echo "<script language='JavaScript'>
-         alert('Uy no! ya valio hablale al ing :v');
-         location.assign('../views/citas.php');
-         </script>";
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/citas.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
     }
 }

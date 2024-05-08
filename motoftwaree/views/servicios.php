@@ -105,29 +105,27 @@ if ($varsesion == null || $varsesion = '') {
                             const href = $(this).attr('href')
 
                             Swal.fire({
-                                title: '¿Estas seguro de eliminar este servicio?',
-                                text: "¡No podrás revertir esto!!",
+                                title: '¿Estás seguro de eliminar este servicio?',
+                                text: '¡No podrás revertir esto!',
                                 icon: 'warning',
                                 showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Si, eliminar!',
-                                cancelButtonText: 'Cancelar!',
+                                confirmButtonColor: '#8E2317',
+                                cancelButtonColor: '#8E2317',
+                                confirmButtonText: 'Sí, eliminar!',
+                                cancelButtonText: 'Cancelar',
                             }).then((result) => {
-                                if (result.value) {
-                                    if (result.isConfirmed) {
-                                        Swal.fire(
-                                            'Eliminado!',
-                                            'El servicio fue eliminado.',
-                                            'success'
-                                        )
-                                    }
-
-                                    document.location.href = href;
+                                if (result.isConfirmed) {
+                                    Swal.fire(
+                                        'Eliminado!',
+                                        'El servicio fue eliminado.',
+                                        'success'
+                                    ).then(() => {
+                                        // Redirect to the deletion URL after confirmation
+                                        window.location.href = href;
+                                    });
                                 }
-                            })
-
-                        })
+                            });
+                        });
                     </script>
                     <script src="../package/dist/sweetalert2.all.js"></script>
                     <script src="../package/dist/sweetalert2.all.min.js"></script>

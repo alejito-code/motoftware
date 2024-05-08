@@ -21,11 +21,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.5/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.5/sweetalert2.min.css">
+    <link rel='stylesheet' href='../../package/dist/sweetalert2.min.css'>
     <script src='../../js/jquery.min.js'></script>
     <script src='./fullcalendar/dist/index.global.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
+            
             var today = new Date(); // obtener la fecha actual
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -98,12 +100,13 @@
 
     </style>
 </head>
-</head>
 <body>
 <a href="../selec_cita.php" class="atras">Atras</a>
-    <h1>¡Agenda tu cita por falla electrica aquí!</h1>
+    <h1>¡Agenda tu cita aquí!</h1>
     <div class="container">
-        <h2>Formulario para Falla electrica</h2>
+        <h2>Formulario para Agenda
+            
+        </h2>
         <form id="cita-form" action="../../includes/functions.php" method="POST">
             <div class="form-group">
               <label>Selecione la placa del vehiculo</label>
@@ -266,8 +269,17 @@
                     success: function(response) {
                         // manejar la respuesta del servidor
                         console.log(response);
-                        alert('Cita agendada exitosamente');
-                        location.assign('../selec_cita.php');
+                        Swal.fire({
+                        title: 'Éxito!',
+                        text: 'Cita agendada exitosamente',
+                        icon: 'success',
+                        confirmButtonText: 'Ok',
+                        confirmButtonColor: '#8E2317'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.assign('../selec_cita.php');
+                        }
+                    });
                     }
                 });
             });
@@ -310,5 +322,6 @@
         });
     </script> -->
 </body>
+<script src='../../package/dist/sweetalert2.min.js'></script>
 <script src=https://kit.fontawesome.com/86860db679.js crossorigin="anonymous"></script>
 </html>

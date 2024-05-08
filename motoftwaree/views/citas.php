@@ -26,6 +26,7 @@ if ($varsesion == null || $varsesion = '') {
 
     <script src="../js/jquery.min.js"></script>
     <script src="../js/app.js"></script>
+    <link rel='stylesheet' href='../../package/dist/sweetalert2.min.css'>
 
     <!-- Otros enlaces y scripts que necesites -->
 </head>
@@ -122,32 +123,28 @@ if ($varsesion == null || $varsesion = '') {
                     <script>
                         $('.btn-del').on('click', function(e) {
                             e.preventDefault();
-                            const href = $(this).attr('href')
-
+                            const href = $(this).attr('href');
                             Swal.fire({
                                 title: 'Estas seguro de eliminar esta cita?',
                                 text: "¡No podrás revertir esto!!",
                                 icon: 'warning',
                                 showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
+                                confirmButtonColor: '#8E2317',
+                                cancelButtonColor: '#8E2317',
                                 confirmButtonText: 'Si, eliminar!',
                                 cancelButtonText: 'Cancelar!',
                             }).then((result) => {
                                 if (result.value) {
-                                    if (result.isConfirmed) {
-                                        Swal.fire(
-                                            'Eliminado!',
-                                            'El usuario fue eliminado.',
-                                            'success'
-                                        )
-                                    }
-
-                                    document.location.href = href;
+                                    Swal.fire(
+                                        'Eliminado!',
+                                        'El usuario fue eliminado.',
+                                        'success'
+                                    ).then(() => {
+                                        document.location.href = href;
+                                    });
                                 }
-                            })
-
-                        })
+                            });
+                        });
                     </script>
                     <script src="../package/dist/sweetalert2.all.js"></script>
                     <script src="../package/dist/sweetalert2.all.min.js"></script>
@@ -383,8 +380,8 @@ if ($varsesion == null || $varsesion = '') {
                                 text: "¡No podrás revertir esto!!",
                                 icon: 'warning',
                                 showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
+                                confirmButtonColor: '#8E2317',
+                                cancelButtonColor: '#8E2317',
                                 confirmButtonText: 'Si, eliminar!',
                                 cancelButtonText: 'Cancelar!',
                             }).then((result) => {
@@ -393,7 +390,8 @@ if ($varsesion == null || $varsesion = '') {
                                         Swal.fire(
                                             'Eliminado!',
                                             'El usuario fue eliminado.',
-                                            'success'
+                                            'success',
+                                            confirmButtonColor: '#8E2317'
                                         )
                                     }
 
@@ -437,5 +435,5 @@ if ($varsesion == null || $varsesion = '') {
 
 
 </body>
-
+<script src='../package/dist/sweetalert2.min.js'></script>
 </html>

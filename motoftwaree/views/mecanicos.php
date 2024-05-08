@@ -23,6 +23,8 @@ if ($varsesion == null || $varsesion = '') {
     <meta name="author" content="">
 
     <script src="../js/jquery.min.js"></script>
+    <link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>
+    <script src='../package/dist/sweetalert2.min.js'></script>
 
 </head>
 <?php 
@@ -108,34 +110,30 @@ if ($varsesion == null || $varsesion = '') {
 
 
                     <script>
-                        $('.btn-del').on('click', function(e) {
+                            $('.btn-del').on('click', function(e) {
                             e.preventDefault();
                             const href = $(this).attr('href')
 
                             Swal.fire({
-                                title: 'Estas seguro de eliminar a este mecanico?',
-                                text: "¡No podrás revertir esto!!",
+                                title: '¿Estás seguro de eliminar a este mecánico?',
+                                text: '¡No podrás revertir esto!',
                                 icon: 'warning',
                                 showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Si, eliminar!',
-                                cancelButtonText: 'Cancelar!',
+                                confirmButtonColor: '#8E2317',
+                                cancelButtonColor: '#8E2317',
+                                confirmButtonText: 'Sí, eliminar',
+                                cancelButtonText: 'Cancelar'
                             }).then((result) => {
-                                if (result.value) {
-                                    if (result.isConfirmed) {
-                                        Swal.fire(
-                                            'Eliminado!',
-                                            'El usuario fue eliminado.',
-                                            'success'
-                                        )
-                                    }
-
+                                if (result.isConfirmed) {
+                                    Swal.fire(
+                                        '¡Eliminado!',
+                                        'El usuario fue eliminado.',
+                                        'success'
+                                    )
                                     document.location.href = href;
                                 }
-                            })
-
-                        })
+                            });
+                        });
                     </script>
                     <script src="../package/dist/sweetalert2.all.js"></script>
                     <script src="../package/dist/sweetalert2.all.min.js"></script>

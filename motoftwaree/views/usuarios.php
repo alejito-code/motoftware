@@ -21,6 +21,7 @@ if ($actualsesion == null || $actualsesion == '') {
     <meta name="author" content="">
 
     <script src="../js/jquery.min.js"></script>
+    <link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>
 
 </head>
 <?php include "../includes/header.php"; ?>
@@ -33,7 +34,7 @@ if ($actualsesion == null || $actualsesion == '') {
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
-        <h2 class="subtitle">¡Welcome Administrator <?php echo $_SESSION['nombre']; ?>!</h2>
+        <h2 class="subtitle">¡Bienvenido Administrator <?php echo $_SESSION['nombre']; ?>!</h2>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -97,36 +98,34 @@ if ($actualsesion == null || $actualsesion == '') {
                     </table>
 
 
-                    <script>
-                        $('.btn-del').on('click', function(e) {
-                            e.preventDefault();
-                            const href = $(this).attr('href')
+                <script>
+                    $('.btn-del').on('click', function(e) {
+                        e.preventDefault();
+                        const href = $(this).attr('href');
 
-                            Swal.fire({
-                                title: 'Estas seguro de eliminar este usuario?',
-                                text: "¡No podrás revertir esto!!",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Si, eliminar!',
-                                cancelButtonText: 'Cancelar!',
-                            }).then((result) => {
-                                if (result.value) {
-                                    if (result.isConfirmed) {
-                                        Swal.fire(
-                                            'Eliminado!',
-                                            'El usuario fue eliminado.',
-                                            'success'
-                                        )
-                                    }
-
+                        Swal.fire({
+                            title: '¿Estás seguro de eliminar este usuario?',
+                            text: '¡No podrás revertir esto!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#8E2317',
+                            cancelButtonColor: '#8E2317',
+                            confirmButtonText: 'Sí, eliminar',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    title: '¡Eliminado!',
+                                    text: 'El usuario fue eliminado.',
+                                    icon: 'success',
+                                    confirmButtonColor: '#8E2317'
+                                }).then(() => {
                                     document.location.href = href;
-                                }
-                            })
-
-                        })
-                    </script>
+                                });
+                            }
+                        });
+                    });
+                </script>
                     <script src="../package/dist/sweetalert2.all.js"></script>
                     <script src="../package/dist/sweetalert2.all.min.js"></script>
                     <script src="../package/jquery-3.6.0.min.js"></script>
