@@ -33,6 +33,8 @@ $usuario = mysqli_fetch_assoc($resultado);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.5/sweetalert2.min.css">
     <script src="../js/jquery.min.js"></script>
     <script src="../views/agendamiento/fullcalendar/dist/index.global.js"></script>
+    <script src='../package/dist/sweetalert2.min.js'></script>
+    <link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>
 
     <style>
 
@@ -304,8 +306,17 @@ $usuario = mysqli_fetch_assoc($resultado);
                 success: function(response) {
                     // Handle server response
                     console.log(response);
-                    alert('Actualizado correctamente');
-                    location.assign('../views/citas.php');
+                    Swal.fire({
+                    icon: 'success',
+                    title: '¡Actualizado correctamente!',
+                    showConfirmButton: false,
+                    timer: 1500  // La alerta se cerrará automáticamente después de 1.5 segundos
+                    }) .then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        // Redirigir al usuario después de que la alerta se cierre automáticamente
+                        window.location.href = '../views/citas.php';
+                    }
+                    });
                 }
                 });
             }
