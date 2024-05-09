@@ -358,6 +358,9 @@ if ($varsesion == null || $varsesion = '') {
                                 <td><?php echo $fila['observacion']; ?></td>
 
                                 <td>
+                                    <a class="btn btn-warning" href="../includes/editar_cita.php?id_cita=<?php echo $fila['id_cita'] ?> ">
+                                        <i class="fa fa-edit "></i> </a>
+
                                     <a href="../includes/eliminar_cita.php?id_cita=<?php echo $fila['id_cita'] ?> " class="btn btn-danger btn-del">
                                         <i class="fa fa-trash "></i></a></button>
                                 </td>
