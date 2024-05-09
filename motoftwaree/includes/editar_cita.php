@@ -46,6 +46,9 @@ $usuario = mysqli_fetch_assoc($resultado);
         background-color: white;
         border-radius: 5px;
     }
+    #calendar a{
+        color: black;
+    }
 
     </style>
 </head>
