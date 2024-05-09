@@ -109,13 +109,15 @@ while ($fila = mysqli_fetch_assoc($result)) :
         <td><?php echo $fila['placa'];?></td>
         <td><?php echo $fila['nombres'];?></td>
         <td>
-            <?php
-            // Generar una URL temporal para acceder al archivo BLOB
-            $archivo_url = 'data:application/pdf;base64,' . $observacion;
-            ?>
-            <!-- Mostrar un enlace para abrir la vista previa del PDF en una nueva pestaña -->
-            <a href="<?php echo $archivo_url; ?>" target="_blank">Ver PDF</a>
-        </td>
+    <?php
+    // Generar una URL temporal para acceder al archivo BLOB
+    $archivo_url = 'data:application/pdf;base64,' . $observacion;
+    ?>
+
+    <a href="<?php echo $archivo_url; ?>" download="nombre_archivo.pdf">Descargar PDF</a>
+ 
+    <a href="<?php echo $archivo_url; ?>" target="_blank">Ver PDF</a>
+</td>
 <style>
     a{
         color: black;
