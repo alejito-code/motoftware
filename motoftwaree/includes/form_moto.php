@@ -33,14 +33,14 @@ if ($varsesion == null || $varsesion = '') {
                     </div>
                     <div class="form-group">
                         <label for="precio" class="form-label">Modelo</label>
-                        <input type="year" id="modelo" name="modelo" class="form-control" required>
+                        <input type="number" id="modelo" name="modelo" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="precio" class="form-label">Cilindraje</label>
                         <input type="number" id="cilindraje" name="cilindraje" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="precio" class="form-label">Tipo</label>
+                        <label for="precio" class="form-label">Serie</label>
                         <input type="text" id="tipo" name="tipo" class="form-control" onkeyup="mayuscula(this);">
                     </div>
 

@@ -47,8 +47,7 @@ if ($varsesion == null || $varsesion = '') {
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Lista de las Citas Agendadas</h6>
                 <br>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#citas">
-                    <span class="glyphicon glyphicon-plus"></span> Agregar cita <i class="fa fa-plus-circle" aria-hidden="true"></i> </a></button>
+
                 <button type="button" class="btn btn-danger">
                 <a href="./reportes/pdf_cita.php"> PDF <i class="fas fa-file-pdf"></i> </a></button>
                 <button type="button" class="btn btn-success">

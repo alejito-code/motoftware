@@ -16,8 +16,8 @@ $pdf -> Cell(13);
 $pdf ->Cell(20, 5, "Id", 1, 0, "C");
 $pdf ->Cell(20, 5, "Codigo", 1, 0, "C");
 $pdf ->Cell(50, 5, "Nombre", 1, 0, "C");
-$pdf ->Cell(60, 5, "Precio", 1, 0, "C");
-$pdf ->Cell(25, 5, "Fecha Registro", 1, 1, "C");
+$pdf ->Cell(40, 5, "Precio", 1, 0, "C");
+$pdf ->Cell(40, 5, "Fecha Registro", 1, 1, "C");
 
 $pdf -> SetFont("Arial", "", 7);
 
@@ -26,8 +26,8 @@ while($fila = $resultado->fetch_assoc()){
     $pdf ->Cell(20, 5, $fila['id'], 1, 0, "C");
     $pdf ->Cell(20, 5, $fila['codigo'], 1, 0, "C");
     $pdf ->Cell(50, 5, $fila['nombre'], 1, 0, "C");
-    $pdf ->Cell(60, 5, $fila['precio'], 1, 0, "C");
-    $pdf ->Cell(25, 5, $fila['fecha'], 1, 1, "C");
+    $pdf ->Cell(40, 5, $fila['precio'], 1, 0, "C");
+    $pdf ->Cell(40, 5, $fila['fecha'], 1, 1, "C");
 
 }
 

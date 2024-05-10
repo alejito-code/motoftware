@@ -22,7 +22,6 @@
 
 		if ($resultado) {
 			echo "<script language='JavaScript'>
-			alert('¡Registro exitoso! Inicie sesion para continuar.');
 			location.assign('index.html');
 			</script>";
 		} else {

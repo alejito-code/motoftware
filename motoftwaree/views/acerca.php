@@ -51,7 +51,7 @@ if ($varsesion == null || $varsesion = '') {
 
                 <h2>Sobre el Desarrollador</h2>
                 <br>
-                <p>Desarrollado y Mantenido por <a href="https://softcodepm.com/"> Programadores ADSO </a>.
+                <p>Desarrollado y Mantenido por <a href="https://oferta.senasofiaplus.edu.co/sofia-oferta/"> Programadores ADSO </a>.
                     Este sistema es opensource asi que puedes modificarlo segun a tus necesidades.
 
                     ¿Quieres conocer la version mas actualizada de este sistema con mayores funcionalidades? <a href="https://youtu.be/62YKHF_VPDA?si=8TRjdB05FQ7hvOrf" target="_blank">Click Aqui</a>.
