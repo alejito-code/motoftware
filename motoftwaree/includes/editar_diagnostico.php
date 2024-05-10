@@ -10,15 +10,7 @@ if ($varsesion == null || $varsesion = '') {
     header("Location: _sesion/login.php");
 }
 include_once "header.php";
-include "db.php";
-$id = $_GET['id_diag'];
-$consulta = "SELECT c.id_diag, d.fecha, u.nombre AS nomu, m.placa AS plac, 
-me.nombres, me.id AS idmec, m.id AS idmoto, c.observacion FROM diagnostico d 
-INNER JOIN user u ON c.id_user = u.id 
-INNER JOIN moto m ON c.id_moto = m.id
-INNER JOIN mecanico me ON c.id_mec = me.id WHERE u.id = $id_us AND c.id_diag = $id";
-$resultado = mysqli_query($conexion, $consulta);
-$usuario = mysqli_fetch_assoc($resultado);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +53,7 @@ $usuario = mysqli_fetch_assoc($resultado);
             <div id="login-column" class="col-md-6">
                 <div id="login-box" class="col-md-12">
 
-                    <h3 class="text-center">Editar Cita del Cliente <?php echo $usuario['nomu']; ?></h3>
+                    <h3 class="text-center">Editar Diagnostico del Cliente <?php echo $usuario['nomu']; ?></h3>
                     <br>
                     
                     <div class="form-group">
@@ -227,7 +219,7 @@ $usuario = mysqli_fetch_assoc($resultado);
                     }) .then((result) => {
                     if (result.dismiss === Swal.DismissReason.timer) {
                         // Redirigir al usuario después de que la alerta se cierre automáticamente
-                        window.location.href = '../views/copy citas.php';
+                        window.location.href = '../views/citas copy.php';
                     }
                     });
                 }
