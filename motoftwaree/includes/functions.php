@@ -610,7 +610,7 @@ function editar_moto()
     extract($_POST);
     $consulta = "UPDATE moto SET placa = '$placa', marca = '$marca', modelo = '$modelo',  cilindraje = '$cilindraje',
     tipo = '$tipo', id_user = '$id_us' WHERE id = '$id' ";
-    echo $consulta;
+
     $resultado = mysqli_query($conexion, $consulta);
 
     if (!$resultado) {

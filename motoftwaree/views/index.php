@@ -17,7 +17,7 @@ include '../includes/header.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-        <h1>Bienvenido <?php echo $_SESSION['nombre']; ?> a MOTOFTWARE</h1> 
+        <h1>Bienvenid@ <?php echo $_SESSION['nombre']; ?> a MOTOFTWARE</h1> 
         <br>
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -112,7 +112,7 @@ include '../includes/header.php';
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <a href="pacientes.php" class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        <a href="#" class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Numero de clientes</a>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                         <?php 
@@ -143,7 +143,7 @@ include '../includes/header.php';
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <a href="./mecanicos.php" class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                        <a href="#" class="text-xs font-weight-bold text-info text-uppercase mb-1">
                             Numero de Mecanicos </a>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
