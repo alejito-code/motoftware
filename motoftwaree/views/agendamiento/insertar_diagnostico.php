@@ -49,8 +49,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Vincular parámetros y ejecutar la consulta
         mysqli_stmt_bind_param($stmt, "iiiis", $id_us, $placa, $mecanico, $fecha, $observacion);
         if (mysqli_stmt_execute($stmt)) {
-            echo "<script>alert('Cita agendada correctamente en la base de datos');
-            window.location.href = '../../views/selec_cita.php';</script>";
+        echo "<script src='../../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'Cita agendada correctamente en la base de datos',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../../views/selec_cita.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
         } else {
             echo "<script>alert('Error al agendar la cita en la base de datos: " . mysqli_error($conexion) . "');
             window.location.href = '../../views/selec_cita.php';</script>";

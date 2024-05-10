@@ -26,7 +26,7 @@ $usuario = mysqli_fetch_assoc($resultado);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Falla electrica</title>
+    <title>Editar Citas</title>
     <link rel="shortcut icon" type="image/icon" href="../../img/tuerca (1).png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.5/sweetalert2.min.js"></script>

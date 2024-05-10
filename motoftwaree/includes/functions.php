@@ -65,6 +65,10 @@ if (isset($_POST['accion'])) {
         case 'editar_cita':
             editar_cita($start);
             break;
+        
+        case 'editar_diagnostico':
+            editar_diagnostico($start);
+            break;
     }
 }
 
@@ -802,3 +806,58 @@ function editar_cita($start)
         exit();
     }
 }
+function editar_diagnostico($start)
+{
+    include "db.php";
+    extract($_POST);
+
+    echo "Valor de 'id': " . $_POST['id'];
+    echo "Valor de 'id': " . $_POST['id_us'];
+    echo "Valor de 'placa': " . $_POST['id_moto'];
+    echo "Valor de 'mec': " . $_POST['id_mec'];
+    echo "Valor de 'fecha': " . $_POST['fecha'];
+
+    $consulta = "UPDATE diagnostico SET fecha = '$fecha', id_moto = '$id_moto', id_mec = '$id_mec'
+    WHERE id_user = '$id_us' AND id_diag = '$id'";
+
+    $resultado = mysqli_query($conexion, $consulta);
+
+    if ($resultado) {
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Bien!',
+                text: 'El registro fue actualizado correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/citas.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
+    } else {
+        echo "<script src='../package/dist/sweetalert2.min.js'></script>";
+        echo "<link rel='stylesheet' href='../package/dist/sweetalert2.min.css'>";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Uy no! ha ocurrido un error, intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#8E2317'
+            }).then(function() {
+                window.location.href = '../views/citas.php';
+            });
+            document.activeElement.blur();
+        });
+        </script>";
+        exit();
+    }
+}
+

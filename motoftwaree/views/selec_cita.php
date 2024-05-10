@@ -38,6 +38,10 @@ if ($varsesion == null || $varsesion = '') {
                 a:hover{
                     color: white;
                 }
+                .box1{
+                    padding: 100px;
+                    margin-left: 120px;
+                }
                </style> 
 
         <?php include "../includes/footer.php"; ?>

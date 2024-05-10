@@ -295,7 +295,7 @@ while ($fila = mysqli_fetch_assoc($result)) :
                     top: 100%;
                     right: 20px;
                     left: 20px;
-                    margin: 5px;
+                    margin-bottom: 10px;
                     z-index: 1;
                     border: 2px solid black; /* Borde de color #6b6d7d */
                     background-color: transparent; /* Fondo transparente */
@@ -310,7 +310,7 @@ while ($fila = mysqli_fetch_assoc($result)) :
                 }
                 #cierre {
                     position: fixed;
-                    bottom: 10px;
+                    top: 5px;
                     right: 10px;
                     padding: 10px 10px;
                     background-color: #e74a3b;
@@ -394,8 +394,12 @@ while ($fila = mysqli_fetch_assoc($result)) :
            ?>
             <?php
                 }
-           ?>
-                <a href="../includes/eliminar_diagnostico.php?id_diag=<?php echo $fila['id_diag']?> " class="btn btn-danger btn-del">
+                
+           ?>       
+                    <a href="../includes/editar_diagnostico.php?id_diag=<?php echo $fila['id_diag'] ?> " class="btn btn-warning">
+                    <i class="fa fa-edit "></i> </a>
+
+                    <a href="../includes/eliminar_diagnostico.php?id_diag=<?php echo $fila['id_diag']?> " class="btn btn-danger btn-del">
                     <i class="fa fa-trash "></i></a></button>
             </td>
         </tr>
